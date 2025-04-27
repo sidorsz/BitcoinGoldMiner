@@ -557,7 +557,116 @@ table.min-w-full {
   0%,100% { filter: drop-shadow(0 0 6px #FFD700) drop-shadow(0 0 12px #FFD700); }
   50% { filter: drop-shadow(0 0 16px #FFD700) drop-shadow(0 0 32px #FFFACD); }
 }
-    </style>
+/* Neon Gold Border Theme for All Containers */
+.crystal-card,
+.rounded-lg,
+.rounded-xl,
+.shadow-lg,
+.bg-white,
+.bg-gray-50,
+.bg-gray-800,
+.bg-gray-700 {
+  border: 2px solid;
+  border-radius: 2px;
+
+  border-image: linear-gradient(
+    120deg,
+    #ffd700 0%,
+    #fff700 20%,
+    
+    #ffd700 100%
+  ) 1;
+  box-shadow:
+    0 0 8px 2px #ffd700cc,
+    
+    
+  background-clip: padding-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Neon effect on hover */
+.crystal-card:hover,
+.rounded-lg:hover,
+.rounded-xl:hover,
+.shadow-lg:hover {
+  box-shadow:
+    0 0 16px 4px #ffd700,
+  
+    
+  border-color: #fff700;
+}
+
+/* Dark mode support */
+.dark .crystal-card,
+.dark .rounded-lg,
+.dark .rounded-xl,
+.dark .shadow-lg,
+.dark .bg-white,
+.dark .bg-gray-50,
+.dark .bg-gray-800,
+.dark .bg-gray-700 {
+  background-color: #18181b !important;
+  border-image: linear-gradient(
+    120deg,
+    #ffd700 0%,
+  
+  ) 1;
+  box-shadow:
+    0 0 16px 4px #ffd70099,
+    
+}
+          .mining-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+            transition: all 0.3s ease;
+          }
+          .mining-card:hover {
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+          }
+          .mining-active {
+            animation: goldPulse 2s infinite;
+          }
+          .boost-card {
+            perspective: 1000px;
+            height: 220px;
+          }
+          .boost-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+          }
+          .boost-card-inner.flipped {
+            transform: rotateY(180deg);
+          }
+          .boost-card-front, .boost-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          }
+          .boost-card-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+          }
+          @keyframes goldPulse {
+            0% {
+              box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+            }
+            50% {
+              box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            }
+            100% {
+              box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+            }
+          }
+  </style>
     
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
@@ -706,8 +815,8 @@ table.min-w-full {
     });
 
     // Supabase configuration
-    const supabaseUrl = 'https://byzbvsrogorhhdbaewft.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ5emJ2c3JvZ29yaGhkYmFld2Z0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUyNDU0NzAsImV4cCI6MjA2MDgyMTQ3MH0.IRmyupINadjqWq04o-D3WjNqstkyi7TY6nGHWPMs6c0';
+    const supabaseUrl = 'https://mnobniomzmjgpyyqartz.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ub2JuaW9tem1qZ3B5eXFhcnR6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU3NDQ0NzYsImV4cCI6MjA2MTMyMDQ3Nn0.N1w5Ro7TGWu5zdTHhNCyop-iMTl7So7h6UwZfuybx1k';
 
 // Validasi URL
 try {
@@ -1472,7 +1581,7 @@ function Sidebar({ activeTab, setActiveTab, isMobileMenuOpen, profilePhoto, t, s
         <div className="p-6 border-t border-gray-700">
           <div className="flex items-center mb-4">
             {profilePhoto ? (
-              <img className="h-10 w-10 rounded-full mr-4 border-2 border-gold-400" src={profilePhoto} alt="Profile" />
+              <img className="h-10 w-10 rounded-full mr-4 border-2 border-gold-400" src={profilePhoto || "/placeholder.svg"} alt="Profile" />
             ) : (
               <i className="bi bi-person-circle text-3xl mr-4 text-gold-400"></i>
             )}
@@ -1550,7 +1659,7 @@ function TopNavbar({
             <div className="ml-4 relative">
               <div className="flex items-center">
                 {profilePhoto ? (
-                  <img className="h-8 w-8 rounded-full" src={profilePhoto} alt="Profile" />
+                  <img className="h-8 w-8 rounded-full" src={profilePhoto || "/placeholder.svg"} alt="Profile" />
                 ) : (
                   <i className="bi bi-person-circle text-2xl text-gold-400"></i>
                 )}
@@ -1618,105 +1727,120 @@ function AuthPage({ setActiveTab, t, language, changeLanguage, setUser, setSessi
   }, []);
 
   const handleAuth = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError('');
-    setSuccess('');
+  e.preventDefault();
+  setIsLoading(true);
+  setError('');
+  setSuccess('');
 
-    try {
-      if (isLogin) {
-        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-        if (error) throw error;
-        if (data.user && data.session) {
-          setUser(data.user);
-          setSession(data.session);
-          setActiveTab('dashboard');
-        }
-      } else {
-        const newReferralCode = generateReferralCode(); // Gunakan fungsi global
-        const { data, error: signUpError } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            data: {
-              full_name: fullName,
-              referral_code: newReferralCode,
-            },
+  try {
+    if (isLogin) {
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      if (data.user && data.session) {
+        setUser(data.user);
+        setSession(data.session);
+        setActiveTab('dashboard');
+      }
+    } else {
+      const newReferralCode = generateReferralCode(); // Gunakan fungsi global
+      const { data, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            full_name: fullName,
+            referral_code: newReferralCode,
           },
-        });
+        },
+      });
 
-        if (signUpError) {
-          console.error('handleAuth: Sign-up error:', signUpError);
-          if (signUpError.status === 429) {
-            throw new Error('Too many requests. Please wait a moment and try again.');
+      if (signUpError) {
+        console.error('handleAuth: Sign-up error:', signUpError);
+        if (signUpError.status === 429) {
+          throw new Error('Too many requests. Please wait a moment and try again.');
+        }
+        throw new Error(signUpError.message);
+      }
+
+      if (data.user) {
+        let referredBy = null;
+        if (referralCode) {
+          const { data: referrer, error: referrerError } = await supabase
+            .from('profiles')
+            .select('id')
+            .eq('referral_code', referralCode)
+            .single();
+          if (referrerError || !referrer) {
+            console.warn('Invalid referral code:', referralCode);
+          } else {
+            referredBy = referrer.id;
+            // Tambahkan reward referral ke wallet referrer
+            const reward = 0.01;
+            // Update wallet referrer
+            const { data: refWallet } = await supabase
+              .from('wallet')
+              .select('balance')
+              .eq('user_id', referrer.id)
+              .maybeSingle();
+            await supabase.from('wallet').upsert({
+              user_id: referrer.id,
+              balance: (refWallet?.balance || 0) + reward,
+              last_updated: new Date().toISOString()
+            });
+            // Catat transaksi referral
+            await supabase.from('referral_transactions').insert({
+              referrer_id: referrer.id,
+              referred_id: data.user.id,
+              amount: reward,
+              description: 'Reward referral otomatis',
+              created_at: new Date().toISOString()
+            });
           }
-          throw new Error(signUpError.message);
         }
 
-        if (data.user) {
-          let referredBy = null;
-          if (referralCode) {
-            const { data: referrer, error: referrerError } = await supabase
-              .from('profiles')
-              .select('id')
-              .eq('referral_code', referralCode)
-              .single();
-            if (referrerError || !referrer) {
-              console.warn('Invalid referral code:', referralCode);
-            } else {
-              referredBy = referrer.id;
-            }
+        // Tunggu session aktif sebelum upsert profile
+        if (data.session) {
+          await supabase.auth.setSession(data.session);
+          // Upsert profile dengan full_name dari input dan referred_by
+          const { error: profileError } = await supabase.from('profiles').upsert({
+            id: data.user.id,
+            email: data.user.email,
+            full_name: fullName, // Pastikan dari input!
+            phone_number: '',
+            profile_photo: '',
+            referral_code: newReferralCode,
+            referred_by: referredBy,
+            created_at: new Date().toISOString(),
+          });
+
+          if (profileError) {
+            console.error('handleAuth: Profile creation error:', profileError);
+            throw new Error(profileError.message);
           }
 
-          // Pastikan sesi aktif sebelum INSERT
-          if (data.session) {
-            await supabase.auth.setSession(data.session);
-            const { error: profileError } = await supabase.from('profiles').upsert({
-              id: data.user.id,
-              email: data.user.email,
-              full_name: fullName,
-              phone_number: '',
-              profile_photo: '',
-              referral_code: newReferralCode,
-              referred_by: referredBy,
-              created_at: new Date().toISOString(),
-            });
-
-            if (profileError) {
-              console.error('handleAuth: Profile creation error:', profileError);
-              throw new Error(profileError.message);
-            }
-
-            const { error: walletError } = await supabase.from('wallet').upsert({
-              user_id: data.user.id,
-              balance: 0,
-              last_updated: new Date().toISOString(),
-            });
-
-            if (walletError) {
-              console.error('handleAuth: Wallet creation error:', walletError);
-              throw new Error(walletError.message);
-            }
-          }
-
-          setSuccess('Registration successful! Please check your email for confirmation.');
-          setIsLogin(true);
-        } else {
-          throw new Error('No user returned after sign-up');
+          // Hapus pembuatan wallet di sini, cukup di ensureProfileAndWallet!
+          // (JANGAN buat wallet di sini)
         }
+
+        setSuccess('Registration successful! Please check your email for confirmation.');
+        setIsLogin(true);
+      } else {
+        throw new Error('No user returned after sign-up');
       }
-    } catch (err) {
-      console.error('handleAuth: Error:', err);
-      let errorMessage = `Authentication failed: ${err.message}`;
-      if (err.message.includes('Too many requests')) {
-        errorMessage = 'Too many requests. Retrying in 10 seconds...';
-        setTimeout(() => handleAuth(e), 10000); // Retry setelah 10 detik
-      }
-      setError(errorMessage);
-    } finally {
-      setIsLoading(false);
     }
-  };
+  } catch (err) {
+    console.error('handleAuth: Error:', err);
+    let errorMessage = `Authentication failed: ${err.message}`;
+    if (err.message.includes('Too many requests')) {
+      errorMessage = 'Too many requests. Retrying in 10 seconds...';
+      setTimeout(() => handleAuth(e), 10000); // Retry setelah 10 detik
+    }
+    setError(errorMessage);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   const handleOAuthLogin = async (provider) => {
     setIsLoading(true);
@@ -3030,7 +3154,7 @@ const DashboardPage = ({ user, t, miningState, setMiningState, profile }) => {
     const startDate = new Date(start);
     const endDate = end ? new Date(end) : new Date();
     const seconds = Math.floor((endDate - startDate) / 1000);
-    const hours = Math.floor(seconds / 3600);
+    const hours = Math.floor((seconds % 3600) / 60);
     const minutes = Math.floor((seconds % 3600) / 60);
     const secs = seconds % 60;
     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs
@@ -3042,324 +3166,56 @@ const DashboardPage = ({ user, t, miningState, setMiningState, profile }) => {
     <div className="ml-0 md:ml-96 px-4 md:px-6 max-w-full md:max-w-[calc(100%-384px)]">
       <style>
         {`
-          .booster-card {
-            width: 260px;
-            height: 160px;
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+          .mining-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+            transition: all 0.3s ease;
+          }
+          .mining-card:hover {
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+          }
+          .mining-active {
+            animation: goldPulse 2s infinite;
+          }
+          .boost-card {
             perspective: 1000px;
+            height: 220px;
           }
-
-          .booster-card:hover .booster-front,
-          .booster-card.touched .booster-front {
-            transform: rotateY(-180deg);
-            z-index: 1;
+          .boost-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
           }
-
-          .booster-card:hover .booster-back,
-          .booster-card.touched .booster-back {
-            transform: rotateY(0deg);
-            z-index: 2;
+          .boost-card-inner.flipped {
+            transform: rotateY(180deg);
           }
-
-          .booster-card.basic {
-            background: linear-gradient(135deg, #2E7D32 0%, #66BB6A 100%);
-            border: 1px solid #4CAF50;
-          }
-
-          .booster-card.basic::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-              to right,
-              rgba(255, 255, 255, 0) 0%,
-              rgba(255, 255, 255, 0.2) 50%,
-              rgba(255, 255, 255, 0) 100%
-            );
-            transform: rotate(45deg);
-            animation: shine 6s infinite;
-            pointer-events: none;
-          }
-
-          .booster-card.pro {
-            background: linear-gradient(135deg, #1565C0 0%, #42A5F5 100%);
-            border: 1px solid #2196F3;
-          }
-
-          .booster-card.pro::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-              to right,
-              rgba(255, 255, 255, 0) 0%,
-              rgba(255, 255, 255, 0.3) 50%,
-              rgba(255, 255, 255, 0) 100%
-            );
-            transform: rotate(45deg);
-            animation: shine 5s infinite;
-            pointer-events: none;
-          }
-
-          .booster-card.elite {
-            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
-            border: 2px solid #FFD700;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-          }
-
-          .booster-card.elite::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-              to right,
-              rgba(255, 255, 255, 0) 0%,
-              rgba(255, 255, 255, 0.5) 50%,
-              rgba(255, 255, 255, 0) 100%
-            );
-            transform: rotate(45deg);
-            animation: shine 4s infinite;
-            pointer-events: none;
-          }
-
-          .booster-card.elite::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="rgba(255,255,255,0.05)" d="M30,10L50,30L70,10L90,30L70,50L90,70L70,90L50,70L30,90L10,70L30,50L10,30L30,10Z"/></svg>');
-            background-size: 60px 60px;
-            opacity: 0.3;
-            pointer-events: none;
-          }
-
-          @keyframes shine {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) rotate(45deg); }
-          }
-
-          .booster-front, .booster-back {
+          .boost-card-front, .boost-card-back {
             position: absolute;
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
-            transition: transform 0.6s, z-index 0.6s;
-            border-radius: 12px;
-            overflow: hidden;
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
           }
-
-          .booster-front {
-            transform: rotateY(0deg);
-            z-index: 2;
-          }
-
-          .booster-back {
+          .boost-card-back {
             transform: rotateY(180deg);
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 16px;
-            color: white;
-            background: inherit;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
           }
-
-          .booster-content {
-            position: relative;
-            z-index: 2;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            padding: 16px;
-            color: white;
-          }
-
-          .booster-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-          }
-
-          .booster-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-          }
-
-          .booster-badge {
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-          }
-
-          .basic .booster-badge {
-            background: rgba(0, 100, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-          }
-
-          .pro .booster-badge {
-            background: rgba(0, 0, 150, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-          }
-
-          .elite .booster-badge {
-            background: rgba(120, 100, 0, 0.4);
-            border: 1px solid rgba(255, 215, 0, 0.6);
-            color: #FFD700;
-            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
-          }
-
-          .booster-details {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-          }
-
-          .booster-description {
-            font-size: 0.85rem;
-            margin-bottom: 12px;
-            line-height: 1.4;
-          }
-
-          .booster-stats {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            margin-bottom: 12px;
-          }
-
-          .booster-stat {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          }
-
-          .booster-stat-value {
-            font-weight: 700;
-            font-size: 1.1rem;
-          }
-
-          .booster-stat-label {
-            font-size: 0.7rem;
-            opacity: 0.8;
-          }
-
-          .booster-button {
-            width: 100%;
-            padding: 8px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
-
-          .basic .booster-button {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-          }
-
-          .basic .booster-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-          }
-
-          .pro .booster-button {
-            background: rgba(255, 255, 255, 0.25);
-            color: white;
-          }
-
-          .pro .booster-button:hover {
-            background: rgba(255, 255, 255, 0.35);
-          }
-
-          .elite .booster-button {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.7) 0%, rgba(212, 175, 55, 0.7) 100%);
-            color: #111;
-            font-weight: 700;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-          }
-
-          .elite .booster-button:hover {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9) 0%, rgba(212, 175, 55, 0.9) 100%);
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-          }
-
-          .booster-icon {
-            margin-right: 6px;
-            font-size: 1rem;
-          }
-
-          .booster-back p {
-            margin: 5px 0;
-            font-size: 0.9rem;
-            text-align: center;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-          }
-
-          .booster-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 280px);
-            gap: 20px;
-            justify-content: center;
-            overflow-x: auto;
-          }
-
-          .crystal-card {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-          }
-
-          .crystal-card:hover {
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-            transform: translateY(-2px);
-          }
-
-          .mining-active {
-            animation: pulse 2s infinite;
-          }
-
-          @keyframes pulse {
+          @keyframes goldPulse {
             0% {
-              box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
+              box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
             }
-            70% {
-              box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
+            50% {
+              box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
             }
             100% {
-              box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+              box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
             }
-          }
-
-          .text-gold-600 {
-            color: #D4AF37;
           }
         `}
       </style>
@@ -3367,1703 +3223,1568 @@ const DashboardPage = ({ user, t, miningState, setMiningState, profile }) => {
       {error && (
         <div className="bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-100 px-4 py-3 rounded mb-4">
           {error}
+          <button
+            onClick={() => setError('')}
+            className="ml-2 text-red-700 dark:text-red-100 hover:text-red-900 dark:hover:text-red-300"
+          >
+            <i className="bi bi-x"></i>
+          </button>
         </div>
       )}
 
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Dashboard</h1>
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 crystal-card transition-colors duration-300 animate-slide-in mb-6">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 section-title gold-text-gradient">
+          {t('dashboard')}
+        </h1>
 
-      {/* Wallet Balance Card */}
-      <div className="crystal-card">
-  <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Saldo Wallet</h2>
-  <div className="flex items-end">
-    <p className="text-3xl font-bold text-gold-600">
-      {(wallet.balance + miningState.btcMined).toFixed(8)}
-    </p>
-    <span className="ml-2 text-xl text-gray-500 dark:text-gray-400">₿Ǥɱ</span>
-  </div>
-  <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-    ≈ ${((wallet.balance + miningState.btcMined) * 50000).toFixed(2)} ₿Ǥɱ (Poin)
-  </p>
-</div>
-
-      {/* Mining Boosters Section */}
-<div className="crystal-card">
-  <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Mining Boosters</h2>
-  {/* Tambahkan wrapper overflow-x-auto agar scroll horizontal di mobile */}
-  <div className="overflow-x-auto -mx-4 md:mx-0">
-    <div
-      className="booster-grid px-4 md:px-0"
-      style={{
-        minWidth: 840, // 3 * 280px, atau lebih jika item lebih banyak
-        width: 'max-content',
-      }}
-    >
-      {items.length === 0 ? (
-        <p className="text-gray-500 col-span-3 text-center">Tidak ada booster tersedia.</p>
-      ) : (
-        items.map((item) => (
-          <div
-            key={item.id}
-            className={`booster-card-wrapper booster-card ${item.level?.toLowerCase() || 'basic'} ${
-              flipStates[item.id] ? 'touched' : ''
-            }`}
-            onTouchStart={() => handleTouchStart(item.id)}
-          >
-            <div className="booster-front">
-              <div className="booster-content">
-                <div className="booster-header">
-                  <div className="booster-title">{item.name}</div>
-                  <div className="booster-badge">{item.level}</div>
-                </div>
-                <div className="booster-details">
-                  <div className="booster-description">
-                    Boost mining Anda dengan {item.name} yang kuat!
-                  </div>
-                  <div className="booster-stats">
-                    <div className="booster-stat">
-                      <span className="booster-stat-value">{item.boost}x</span>
-                      <span className="booster-stat-label">Boost</span>
-                    </div>
-                    <div className="booster-stat">
-                      <span className="booster-stat-value">{item.price} ETH</span>
-                      <span className="booster-stat-label">Harga</span>
-                    </div>
-                    <div className="booster-stat">
-                      <span className="booster-stat-value">{item.duration / 86400000}</span>
-                      <span className="booster-stat-label">Hari</span>
-                    </div>
-                  </div>
-                </div>
-                <button
-                  onClick={() => purchaseItem(item)}
-                  disabled={isLoading}
-                  className="booster-button"
-                >
-                  <i className="bi bi-lightning-charge-fill booster-icon"></i>
-                  {isLoading ? 'Memproses...' : 'Beli Sekarang'}
-                </button>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div className={`mining-card p-6 rounded-lg ${miningState.status === 'mining' ? 'mining-active' : ''}`}>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-semibold text-gray-800 dark:text-white gold-text-gradient">
+                {t('mining')}
+              </h2>
+              <div className="flex items-center">
+                <span className={`inline-block w-3 h-3 rounded-full mr-2 ${
+                  miningState.status === 'mining' ? 'bg-green-500 animate-pulse' : 'bg-red-500'
+                }`}></span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
+                  {miningState.status === 'mining' ? 'Active' : 'Inactive'}
+                </span>
               </div>
             </div>
-            <div className="booster-back">
-              <p>Boost: {item.boost}x</p>
-              <p>Harga: {item.price} ETH</p>
-              <p>Durasi: {item.duration / 86400000} hari</p>
-              <button
-                onClick={() => purchaseItem(item)}
-                disabled={isLoading}
-                className="booster-button"
-              >
-                {isLoading ? 'Memproses...' : 'Buy'}
-              </button>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                <div className="flex items-center mb-2">
+                  <i className="bi bi-lightning-charge-fill text-yellow-500 mr-2"></i>
+                  <span className="text-sm text-gray-600 dark:text-gray-300">{t('hashRate')}</span>
+                </div>
+                <div className="text-2xl font-bold text-gray-800 dark:text-white">
+                  {miningState.hashRate.toFixed(2)} H/s
+                </div>
+              </div>
+              <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                <div className="flex items-center mb-2">
+                  <i className="bi bi-currency-bitcoin text-yellow-500 mr-2"></i>
+                  <span className="text-sm text-gray-600 dark:text-gray-300">{t('btcMined')}</span>
+                </div>
+                <div className="text-2xl font-bold text-gray-800 dark:text-white">
+                  {miningState.btcMined.toFixed(8)} ₿Ǥɱ
+                </div>
+              </div>
+              <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                <div className="flex items-center mb-2">
+                  <i className="bi bi-speedometer text-yellow-500 mr-2"></i>
+                  <span className="text-sm text-gray-600 dark:text-gray-300">{t('networkSpeed')}</span>
+                </div>
+                <div className="text-2xl font-bold text-gray-800 dark:text-white">
+                  {miningState.networkSpeed.toFixed(2)} Mbps
+                </div>
+              </div>
+              <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                <div className="flex items-center mb-2">
+                  <i className="bi bi-wallet-fill text-yellow-500 mr-2"></i>
+                  <span className="text-sm text-gray-600 dark:text-gray-300">{t('balance')}</span>
+                </div>
+                <div className="text-2xl font-bold text-gray-800 dark:text-white">
+                  {wallet.balance.toFixed(8)} ₿Ǥɱ
+                </div>
+              </div>
             </div>
-          </div>
-        ))
-      )}
-    </div>
-  </div>
-</div>
 
-      {/* Daily Mining Chart */}
-      <div className="crystal-card">
-        <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Mining Harian (7 Hari Terakhir)</h2>
-        <canvas id="miningChart" className="w-full h-64"></canvas>
-      </div>
-
-     {/* Mining Stats Grid */}
-<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-  {/* Mining Status Card */}
-  <div
-    className={`crystal-card transition-all duration-300 ${
-      miningState.status === 'mining' ? 'mining-active border-2 border-gold-500' : ''
-    }`}
-  >
-    <div className="flex items-center justify-between mb-4">
-      <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Status Mining</h2>
-      <span
-        className={`px-2 py-1 rounded-full text-xs font-medium ${
-          miningState.status === 'mining'
-            ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-            : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
-        }`}
-      >
-        {miningState.status === 'mining' ? 'AKTIF' : 'BERHENTI'}
-      </span>
-    </div>
-    <div className="space-y-4">
-      <div>
-        <p className="text-sm text-gray-500 dark:text-gray-400">Hash Rate</p>
-        <p className="text-2xl font-bold text-gray-900 dark:text-white">
-          {miningState.hashRate.toFixed(1)} <span className="text-sm font-normal">H/s</span>
-        </p>
-      </div>
-      <div>
-        <p className="text-sm text-gray-500 dark:text-gray-400">Kecepatan Jaringan</p>
-        <p className="text-2xl font-bold text-gray-900 dark:text-white">
-          {miningState.networkSpeed.toFixed(2)} <span className="text-sm font-normal">Mbps</span>
-        </p>
-      </div>
-      {/* Booster Aktif */}
-      {(() => {
-        // Cari booster aktif dengan boost terbesar
-        const now = new Date().toISOString();
-        let activeBooster = null;
-        userItems.forEach((purchase) => {
-          const item = items.find((i) => i.id === purchase.item_id);
-          if (
-            item &&
-            purchase.expires_at > now &&
-            (!activeBooster || item.boost > activeBooster.boost)
-          ) {
-            activeBooster = { ...item, expires_at: purchase.expires_at };
-          }
-        });
-        if (activeBooster) {
-          return (
-            <div className="mt-2">
-              <span className="inline-block px-3 py-1 rounded-full bg-green-200 text-green-800 font-semibold text-xs mr-2">
-                Paket Aktif: {activeBooster.level || (activeBooster.boost === 1.5 ? 'Basic' : activeBooster.boost === 3 ? 'Pro' : activeBooster.boost === 5 ? 'Elite' : '')} ({activeBooster.boost}x Boost)
-              </span>
-              <span className="inline-block text-xs text-gray-500">
-                Exp: {formatTime(activeBooster.expires_at)}
-              </span>
-            </div>
-          );
-        }
-        return null;
-      })()}
-    </div>
-  </div>
-
-        {/* BTC Mined Card */}
-        <div className="crystal-card">
-          <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">₿Ǥɱ Ditambang</h2>
-          <div className="flex items-end">
-            <p className="text-3xl font-bold text-gold-600">{miningState.btcMined.toFixed(8)}</p>
-            <span className="ml-2 text-xl text-gray-500 dark:text-gray-400">₿Ǥɱ</span>
-          </div>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-            ≈ ${(miningState.btcMined * 50000).toFixed(2)} ₿Ǥɱ (Poin)
-          </p>
-        </div>
-
-        {/* Mining Controls Card */}
-        <div className="crystal-card">
-          <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Kontrol Mining</h2>
-          <div className="space-y-4">
-            {miningState.status === 'stopped' ? (
-              <button
-                onClick={startMining}
-                disabled={isLoading}
-                className="w-full bg-gold-600 hover:bg-gold-700 text-white py-3 px-4 rounded-md font-medium flex items-center justify-center transition-colors duration-300"
-              >
-                {isLoading ? (
-                  <span className="flex items-center">
-                    <i className="bi bi-arrow-repeat animate-spin mr-2"></i>
-                    Memulai...
-                  </span>
-                ) : (
-                  <span className="flex items-center">
-                    <i className="bi bi-play-fill mr-2"></i>
-                    Mulai Mining
-                  </span>
-                )}
-              </button>
-            ) : (
-              <button
-                onClick={stopMining}
-                disabled={isLoading}
-                className="w-full bg-red-600 hover:bg-red-700 text-white py-3 px-4 rounded-md font-medium flex items-center justify-center transition-colors duration-300"
-              >
-                {isLoading ? (
-                  <span className="flex items-center">
-                    <i className="bi bi-arrow-repeat animate-spin mr-2"></i>
-                    Menghentikan...
-                  </span>
-                ) : (
-                  <span className="flex items-center">
-                    <i className="bi bi-stop-fill mr-2"></i>
-                    Hentikan Mining
-                  </span>
-                )}
-              </button>
-            )}
-            <div className="text-center text-sm text-gray-500 dark:text-gray-400">
+            <div className="flex justify-center">
               {miningState.status === 'mining' ? (
-                <p>
-                  Mining sedang berlangsung... <i className="bi bi-lightning-charge-fill text-gold-500"></i>
-                </p>
+                <button
+                  onClick={stopMining}
+                  disabled={isLoading}
+                  className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg shadow-lg transition-colors duration-300 flex items-center"
+                >
+                  {isLoading ? (
+                    <i className="bi bi-arrow-repeat animate-spin mr-2"></i>
+                  ) : (
+                    <i className="bi bi-stop-fill mr-2"></i>
+                  )}
+                  {t('stopMining')}
+                </button>
               ) : (
-                <p>Siap untuk memulai mining</p>
+                <button
+                  onClick={startMining}
+                  disabled={isLoading}
+                  className="px-6 py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-medium rounded-lg shadow-lg transition-colors duration-300 flex items-center"
+                >
+                  {isLoading ? (
+                    <i className="bi bi-arrow-repeat animate-spin mr-2"></i>
+                  ) : (
+                    <i className="bi bi-play-fill mr-2"></i>
+                  )}
+                  {t('startMining')}
+                </button>
               )}
             </div>
+          </div>
+
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg crystal-card">
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-white gold-text-gradient mb-4">
+              {t('miningHistory')}
+            </h2>
+            <canvas id="miningChart" width="400" height="200" className="mb-4"></canvas>
+            <div className="flex justify-end">
+              <button
+                onClick={() => {
+                  fetchMiningHistory();
+                  fetchDailyMiningData();
+                }}
+                className="px-4 py-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-white rounded-lg transition-colors duration-300 flex items-center text-sm"
+              >
+                <i className="bi bi-arrow-clockwise mr-2"></i>
+                {t('refresh')}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold text-gray-800 dark:text-white gold-text-gradient mb-4">
+            Boosters
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {items.map((item) => {
+              const isOwned = userItems.some(
+                (ui) => ui.item_id === item.id && new Date(ui.expires_at) > new Date()
+              );
+              const isFlipped = flipStates[item.id] || false;
+              return (
+                <div
+                  key={item.id}
+                  className="boost-card"
+                  onTouchStart={() => handleTouchStart(item.id)}
+                >
+                  <div className={`boost-card-inner ${isFlipped ? 'flipped' : ''}`}>
+                    <div className="boost-card-front bg-white dark:bg-gray-700 p-4 rounded-lg shadow-lg">
+                      <div className="flex justify-between items-start">
+                        <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+                          {item.name}
+                        </h3>
+                        <span className="inline-block px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs font-semibold rounded">
+                          {item.boost}x Boost
+                        </span>
+                      </div>
+                      <div className="my-4 flex justify-center">
+                        <i className={`bi ${item.icon || 'bi-lightning-charge'} text-5xl text-yellow-500`}></i>
+                      </div>
+                      <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                        {item.description || 'Increases your mining speed and earnings.'}
+                      </p>
+                      <div className="flex justify-between items-center mt-auto">
+                        <span className="text-lg font-bold text-gray-800 dark:text-white">
+                          {item.price} ETH
+                        </span>
+                        {isOwned ? (
+                          <span className="inline-block px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm font-semibold rounded">
+                            Active
+                          </span>
+                        ) : (
+                          <button
+                            onClick={() => purchaseItem(item)}
+                            disabled={isLoading}
+                            className="px-3 py-1 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white text-sm font-medium rounded shadow transition-colors duration-300"
+                          >
+                            Buy Now
+                          </button>
+                        )}
+                      </div>
+                      <div className="text-center mt-2">
+                        <button
+                          onClick={() => setFlipStates((prev) => ({ ...prev, [item.id]: true }))}
+                          className="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+                        >
+                          More Info <i className="bi bi-arrow-right-short"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div className="boost-card-back p-4 rounded-lg shadow-lg">
+                      <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
+                        {item.name} Details
+                      </h3>
+                      <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 mb-4">
+                        <li>
+                          <i className="bi bi-check-circle-fill text-green-500 mr-1"></i> {item.boost}x mining speed
+                        </li>
+                        <li>
+                          <i className="bi bi-check-circle-fill text-green-500 mr-1"></i> {item.duration / (24 * 60 * 60 * 1000)} days duration
+                        </li>
+                        <li>
+                          <i className="bi bi-check-circle-fill text-green-500 mr-1"></i> Instant activation
+                        </li>
+                        <li>
+                          <i className="bi bi-check-circle-fill text-green-500 mr-1"></i> Stackable with other boosters
+                        </li>
+                      </ul>
+                      <div className="text-center mt-auto">
+                        <button
+                          onClick={() => setFlipStates((prev) => ({ ...prev, [item.id]: false }))}
+                          className="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+                        >
+                          <i className="bi bi-arrow-left-short"></i> Back
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-xl font-semibold text-gray-800 dark:text-white gold-text-gradient mb-4">
+            {t('miningHistory')}
+          </h2>
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white dark:bg-gray-800 rounded-lg overflow-hidden">
+              <thead className="bg-gray-100 dark:bg-gray-700">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    Start Time
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    End Time
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    Duration
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    Hash Rate
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    Network
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    ₿Ǥɱ Mined
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                {miningHistory.length === 0 ? (
+                  <tr>
+                    <td colSpan="6" className="px-6 py-4 text-center text-gray-500 dark:text-gray-400">
+                      No mining history found
+                    </td>
+                  </tr>
+                ) : (
+                  miningHistory.map((session) => (
+                    <tr key={session.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                        {formatTime(session.start_time)}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                        {session.end_time ? formatTime(session.end_time) : 'Active'}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                        {formatDuration(session.start_time, session.end_time)}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                        {session.hash_rate?.toFixed(2) || 0} H/s
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                        {session.network_speed?.toFixed(2) || 0} Mbps
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-yellow-600 dark:text-yellow-400">
+                        {session.btc_mined?.toFixed(8) || 0} ₿Ǥɱ
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      {profile && profile.referral_code && (
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 crystal-card transition-colors duration-300 animate-slide-in">
+          <h2 className="text-xl font-semibold text-gray-800 dark:text-white gold-text-gradient mb-4">
+            {t('referralCode')}
+          </h2>
+          <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-4">
+            <div className="flex items-center justify-between">
+              <div className="text-lg font-bold text-gray-800 dark:text-white">
+                {profile.referral_code}
+              </div>
+              <button
+                onClick={() => {
+                  const url = `${window.location.origin}?ref=${profile.referral_code}`;
+                  navigator.clipboard.writeText(url);
+                  setError('Referral link copied to clipboard!');
+                  setTimeout(() => setError(''), 3000);
+                }}
+                className="px-3 py-1 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white text-sm font-medium rounded shadow transition-colors duration-300 flex items-center"
+              >
+                <i className="bi bi-clipboard mr-1"></i>
+                {t('copyReferralLink')}
+              </button>
+            </div>
+          </div>
+          <p className="text-sm text-gray-600 dark:text-gray-300">
+            Share your referral code with friends and earn 0.01 ₿Ǥɱ for each new user who signs up using your code!
+          </p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+function ProfilePage({ profile, setProfile, userId, fetchUserProfile, t }) {
+  const [isEditing, setIsEditing] = React.useState(false);
+  const [editedProfile, setEditedProfile] = React.useState({ ...profile });
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState('');
+  const [success, setSuccess] = React.useState('');
+  const [referrals, setReferrals] = React.useState([]);
+  const [referralRewards, setReferralRewards] = React.useState([]);
+
+  React.useEffect(() => {
+    setEditedProfile({ ...profile });
+    fetchReferrals();
+    fetchReferralRewards();
+  }, [profile]);
+
+  const fetchReferrals = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('id, full_name, email, created_at')
+        .eq('referred_by', userId);
+
+      if (error) throw error;
+      setReferrals(data || []);
+    } catch (err) {
+      setError(`Failed to fetch referrals: ${err.message}`);
+    }
+  };
+
+  const fetchReferralRewards = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('referral_transactions')
+        .select('id, amount, created_at, referred_id, profiles:referred_id(full_name, email)')
+        .eq('referrer_id', userId);
+
+      if (error) throw error;
+      setReferralRewards(data || []);
+    } catch (err) {
+      setError(`Failed to fetch referral rewards: ${err.message}`);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedProfile((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (file.size > 5 * 1024 * 1024) {
+      setError(t('fileTooLarge'));
+      return;
+    }
+
+    setEditedProfile((prev) => ({
+      ...prev,
+      profile_photo: file,
+    }));
+
+    // Preview image
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setEditedProfile((prev) => ({
+        ...prev,
+        profile_photo_url: reader.result,
+      }));
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError('');
+    setSuccess('');
+
+    try {
+      let profile_photo_url = profile.profile_photo_url;
+
+      // Upload new profile photo if changed
+      if (editedProfile.profile_photo && editedProfile.profile_photo instanceof File) {
+        const fileExt = editedProfile.profile_photo.name.split('.').pop();
+        const fileName = `${userId}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+        const filePath = `profile_photos/${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from('avatars')
+          .upload(filePath, editedProfile.profile_photo);
+
+        if (uploadError) throw uploadError;
+
+        const { data } = supabase.storage.from('avatars').getPublicUrl(filePath);
+        profile_photo_url = data.publicUrl;
+      }
+
+      // Update profile in database
+      const { error: updateError } = await supabase
+        .from('profiles')
+        .update({
+          full_name: editedProfile.full_name,
+          phone_number: editedProfile.phone_number,
+          profile_photo: profile_photo_url,
+          email: editedProfile.email,
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', userId);
+
+      if (updateError) throw updateError;
+
+      await fetchUserProfile(userId);
+      setSuccess(t('profileUpdated'));
+      setIsEditing(false);
+    } catch (err) {
+      setError(`Failed to update profile: ${err.message}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="ml-0 md:ml-96 px-4 md:px-6 max-w-full md:max-w-[calc(100%-384px)]">
+      {error && (
+        <div className="bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-100 px-4 py-3 rounded mb-4">
+          {error}
+          <button
+            onClick={() => setError('')}
+            className="ml-2 text-red-700 dark:text-red-100 hover:text-red-900 dark:hover:text-red-300"
+          >
+            <i className="bi bi-x"></i>
+          </button>
+        </div>
+      )}
+
+      {success && (
+        <div className="bg-green-100 dark:bg-green-900 border border-green-400 dark:border-green-700 text-green-700 dark:text-green-100 px-4 py-3 rounded mb-4">
+          {success}
+          <button
+            onClick={() => setSuccess('')}
+            className="ml-2 text-green-700 dark:text-green-100 hover:text-green-900 dark:hover:text-green-300"
+          >
+            <i className="bi bi-x"></i>
+          </button>
+        </div>
+      )}
+
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 crystal-card transition-colors duration-300 animate-slide-in mb-6">
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white section-title gold-text-gradient">
+            {t('profile')}
+          </h1>
+          {!isEditing && (
+            <button
+              onClick={() => setIsEditing(true)}
+              className="px-4 py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-medium rounded-lg shadow-lg transition-colors duration-300 flex items-center"
+            >
+              <i className="bi bi-pencil-fill mr-2"></i>
+              {t('editProfile')}
+            </button>
+          )}
+        </div>
+
+        {isEditing ? (
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="flex flex-col md:flex-row gap-6">
+              <div className="md:w-1/3 flex flex-col items-center">
+                <div className="relative w-40 h-40 mb-4">
+                  <img
+                    src={editedProfile.profile_photo_url || '/placeholder.svg?height=160&width=160'}
+                    alt="Profile"
+                    className="w-full h-full object-cover rounded-full border-4 border-gold-400"
+                  />
+                  <label
+                    htmlFor="profile-photo"
+                    className="absolute bottom-0 right-0 bg-gold-500 hover:bg-gold-600 text-white rounded-full p-2 cursor-pointer shadow-lg"
+                  >
+                    <i className="bi bi-camera-fill"></i>
+                    <input
+                      type="file"
+                      id="profile-photo"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleFileChange}
+                    />
+                  </label>
+                </div>
+                <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
+                  Click the camera icon to change your profile photo
+                </p>
+              </div>
+
+              <div className="md:w-2/3 space-y-4">
+                <div>
+                  <label
+                    htmlFor="full_name"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  >
+                    {t('fullName')}
+                  </label>
+                  <input
+                    type="text"
+                    id="full_name"
+                    name="full_name"
+                    value={editedProfile.full_name}
+                    onChange={handleInputChange}
+                    placeholder={t('enterFullName')}
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-gold-500 focus:border-gold-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  >
+                    {t('email')}
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={editedProfile.email}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-gold-500 focus:border-gold-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="phone_number"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  >
+                    {t('phoneNumber')}
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone_number"
+                    name="phone_number"
+                    value={editedProfile.phone_number}
+                    onChange={handleInputChange}
+                    placeholder={t('enterPhoneNumber')}
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-gold-500 focus:border-gold-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  />
+                </div>
+
+                <div> text-gray-900 dark:text-white"
+                  />
+                </div>
+
+                <div className="flex justify-end space-x-4">
+                  <button
+                    type="button"
+                    onClick={() => setIsEditing(false)}
+                    className="px-4 py-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-white rounded-lg transition-colors duration-300"
+                  >
+                    {t('cancel')}
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="px-4 py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-medium rounded-lg shadow-lg transition-colors duration-300 flex items-center"
+                  >
+                    {isLoading ? (
+                      <>
+                        <i className="bi bi-arrow-repeat animate-spin mr-2"></i>
+                        {t('saving')}
+                      </>
+                    ) : (
+                      <>
+                        <i className="bi bi-check-lg mr-2"></i>
+                        {t('save')}
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        ) : (
+          <div className="flex flex-col md:flex-row gap-6">
+            <div className="md:w-1/3 flex flex-col items-center">
+              <div className="w-40 h-40 mb-4">
+                <img
+                  src={profile.profile_photo_url || '/placeholder.svg?height=160&width=160'}
+                  alt="Profile"
+                  className="w-full h-full object-cover rounded-full border-4 border-gold-400"
+                />
+              </div>
+              {profile.referral_code && (
+                <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg w-full text-center">
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">{t('referralCode')}</p>
+                  <p className="text-lg font-semibold text-gray-800 dark:text-white">{profile.referral_code}</p>
+                  <button
+                    onClick={() => {
+                      const url = `${window.location.origin}?ref=${profile.referral_code}`;
+                      navigator.clipboard.writeText(url);
+                      setSuccess('Referral link copied to clipboard!');
+                      setTimeout(() => setSuccess(''), 3000);
+                    }}
+                    className="mt-2 px-3 py-1 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white text-sm font-medium rounded shadow transition-colors duration-300 flex items-center justify-center mx-auto"
+                  >
+                    <i className="bi bi-clipboard mr-1"></i>
+                    {t('copyReferralLink')}
+                  </button>
+                </div>
+              )}
+            </div>
+
+            <div className="md:w-2/3 space-y-4">
+              <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">{t('fullName')}</p>
+                <p className="text-lg font-semibold text-gray-800 dark:text-white">
+                  {profile.full_name || t('notSet')}
+                </p>
+              </div>
+
+              <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">{t('email')}</p>
+                <p className="text-lg font-semibold text-gray-800 dark:text-white">
+                  {profile.email || t('notSet')}
+                </p>
+              </div>
+
+              <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">{t('phoneNumber')}</p>
+                <p className="text-lg font-semibold text-gray-800 dark:text-white">
+                  {profile.phone_number || t('notSet')}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 crystal-card transition-colors duration-300 animate-slide-in">
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white gold-text-gradient mb-4">
+          Referrals
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-3">
+              Referred Users ({referrals.length})
+            </h3>
+            {referrals.length === 0 ? (
+              <p className="text-gray-500 dark:text-gray-400">
+                You haven't referred any users yet. Share your referral code to earn rewards!
+              </p>
+            ) : (
+              <div className="bg-gray-50 dark:bg-gray-700 rounded-lg overflow-hidden">
+                <ul className="divide-y divide-gray-200 dark:divide-gray-600">
+                  {referrals.map((referral) => (
+                    <li key={referral.id} className="p-4 hover:bg-gray-100 dark:hover:bg-gray-600">
+                      <div className="flex items-center">
+                        <div className="flex-shrink-0">
+                          <i className="bi bi-person-circle text-2xl text-gray-400 dark:text-gray-500"></i>
+                        </div>
+                        <div className="ml-3">
+                          <p className="text-sm font-medium text-gray-900 dark:text-white">
+                            {referral.full_name || referral.email || 'Anonymous User'}
+                          </p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400">
+                            Joined: {new Date(referral.created_at).toLocaleDateString()}
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+
+          <div>
+            <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-3">
+              Referral Rewards ({referralRewards.length})
+            </h3>
+            {referralRewards.length === 0 ? (
+              <p className="text-gray-500 dark:text-gray-400">
+                No rewards yet. You'll earn 0.01 ₿Ǥɱ for each new user who signs up using your referral code.
+              </p>
+            ) : (
+              <div className="bg-gray-50 dark:bg-gray-700 rounded-lg overflow-hidden">
+                <ul className="divide-y divide-gray-200 dark:divide-gray-600">
+                  {referralRewards.map((reward) => (
+                    <li key={reward.id} className="p-4 hover:bg-gray-100 dark:hover:bg-gray-600">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <div className="flex-shrink-0">
+                            <i className="bi bi-coin text-2xl text-yellow-500"></i>
+                          </div>
+                          <div className="ml-3">
+                            <p className="text-sm font-medium text-gray-900 dark:text-white">
+                              {reward.profiles?.full_name || reward.profiles?.email || 'Anonymous User'}
+                            </p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">
+                              {new Date(reward.created_at).toLocaleDateString()}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="text-sm font-semibold text-yellow-600 dark:text-yellow-400">
+                          +{reward.amount.toFixed(8)} ₿Ǥɱ
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </div>
     </div>
   );
-};
+}
 
-
-function ProfilePage({ profile, setProfile, userId, fetchUserProfile, t }) {
-                      const [isEditing, setIsEditing] = React.useState(false);
-                      const [formData, setFormData] = React.useState({
-                        full_name: profile.full_name || '',
-                        phone_number: profile.phone_number || '',
-                        profile_photo: null,
-                      });
-                      const [previewUrl, setPreviewUrl] = React.useState(null);
-                      const [error, setError] = React.useState('');
-                      const [success, setSuccess] = React.useState('');
-                      const [isLoading, setIsLoading] = React.useState(false);
-                      const fileInputRef = React.useRef(null);
-                    
-                      React.useEffect(() => {
-                        console.log('ProfilePage: userId:', userId);
-                        setFormData({
-                          full_name: profile.full_name || '',
-                          phone_number: profile.phone_number || '',
-                          profile_photo: null,
-                        });
-                        setPreviewUrl(null);
-                      }, [profile, userId]);
-                    
-                      const handleInputChange = (e) => {
-                        const { name, value } = e.target;
-                        setFormData((prev) => ({
-                          ...prev,
-                          [name]: value,
-                        }));
-                      };
-                    
-                      const handleFileChange = (e) => {
-                        const file = e.target.files[0];
-                        if (file) {
-                          if (file.size > 5 * 1024 * 1024) {
-                            setError(t('fileTooLarge'));
-                            return;
-                          }
-                          setFormData((prev) => ({
-                            ...prev,
-                            profile_photo: file,
-                          }));
-                          setPreviewUrl(URL.createObjectURL(file));
-                        }
-                      };
-                    
-                      const handleSaveProfile = async () => {
-                        setIsLoading(true);
-                        setError('');
-                        setSuccess('');
-                    
-                        try {
-                          if (!userId) {
-                            throw new Error('ID pengguna tidak didefinisikan');
-                          }
-                    
-                          const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-                          if (!uuidRegex.test(userId)) {
-                            throw new Error('Format userId tidak valid');
-                          }
-                    
-                          const { data: { user } } = await supabase.auth.getUser();
-                          console.log('ID pengguna terautentikasi:', user?.id, 'userId yang diberikan:', userId);
-                          if (!user || user.id !== userId) {
-                            throw new Error('Tidak diizinkan: ID pengguna tidak cocok');
-                          }
-                    
-                          let profilePhotoUrl = profile.profile_photo_url;
-                    
-                          if (formData.profile_photo) {
-                            const fileExt = formData.profile_photo.name.split('.').pop();
-                            const fileName = `${userId}_${Date.now()}.${fileExt}`;
-                            const { error: uploadError } = await supabase.storage
-                              .from('profile_photos')
-                              .upload(fileName, formData.profile_photo);
-                    
-                            if (uploadError) {
-                              console.error('Error unggah:', uploadError);
-                              throw new Error(`Gagal mengunggah foto profil: ${uploadError.message}`);
-                            }
-                    
-                            const { data: urlData } = supabase.storage
-                              .from('profile_photos')
-                              .getPublicUrl(fileName);
-                    
-                            if (!urlData?.publicUrl) {
-                              throw new Error('Gagal mendapatkan URL publik untuk foto profil');
-                            }
-                            profilePhotoUrl = urlData.publicUrl;
-                    
-                            if (profile.profile_photo) {
-                              const oldFileName = profile.profile_photo.split('/').pop();
-                              await supabase.storage.from('profile_photos').remove([oldFileName]);
-                            }
-                          }
-                    
-                          console.log('Memperbarui profil untuk userId:', userId);
-                          console.log('Data yang dikirim:', {
-                            full_name: formData.full_name,
-                            phone_number: formData.phone_number,
-                            profile_photo: profilePhotoUrl,
-                            updated_at: new Date().toISOString(),
-                          });
-                    
-                         // ...existing code...
-                    const { error: updateError } = await supabase
-                      .from('profiles')
-                      .update({
-                        full_name: formData.full_name,
-                        phone_number: formData.phone_number,
-                        profile_photo: profilePhotoUrl,
-                        updated_at: new Date().toISOString(),
-                      })
-                      .eq('id', userId); // Ganti 'user_id' menjadi 'id'
-                    // ...existing code...
-                    
-                          if (updateError) {
-                            console.error('Error pembaruan:', updateError);
-                            throw new Error(`Gagal memperbarui profil: ${updateError.message}`);
-                          }
-                    
-                          setProfile({
-                            ...profile,
-                            full_name: formData.full_name,
-                            phone_number: formData.phone_number,
-                            profile_photo: profilePhotoUrl,
-                          });
-                          await fetchUserProfile(userId);
-                          setSuccess(t('profileUpdated'));
-                          setIsEditing(false);
-                          setPreviewUrl(null);
-                        } catch (err) {
-                          console.error('handleSaveProfile: Error:', err);
-                          setError(err.message);
-                        } finally {
-                          setIsLoading(false);
-                        }
-                      };
-                    
-                      const handleEditToggle = () => {
-                        setIsEditing(!isEditing);
-                        setError('');
-                        setSuccess('');
-                        setPreviewUrl(null);
-                        if (!isEditing) {
-                          setFormData({
-                            full_name: profile.full_name || '',
-                            phone_number: profile.phone_number || '',
-                            profile_photo: null,
-                          });
-                        }
-                      };
-                      const [inviteCount, setInviteCount] = React.useState(0);
-
-React.useEffect(() => {
-  if (!userId) return;
-  supabase
-    .from('profiles')
-    .select('id')
-    .eq('referred_by', userId)
-    .then(({ data }) => setInviteCount(data ? data.length : 0));
-}, [userId]);
-                    
-                      return (
-                        <div className="ml-0 md:ml-96 px-4 md:px-6 max-w-full md:max-w-[calc(100%-384px)]">
-                          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 section-title animate-slide-in gold-text-gradient">
-                            {t('profile')}
-                          </h1>
-                          {error && (
-  <div
-    className="flex items-center bg-red-50 dark:bg-red-800/80 border border-red-200 dark:border-red-700 text-red-600 dark:text-red-100 px-3 py-2 rounded-md mb-3 text-xs shadow-sm animate-fade-in transition-all duration-300"
-    style={{ minHeight: 0, maxWidth: 320 }}
-  >
-    <span className="flex-1 break-words">{error}</span>
-    <button
-      onClick={() => setError('')}
-      className="ml-2 text-red-400 hover:text-red-700 dark:hover:text-white transition-colors duration-200 text-base"
-      aria-label="Close"
-      type="button"
-      style={{ lineHeight: 1 }}
-    >
-      <i className="bi bi-x"></i>
-    </button>
-  </div>
-)}
-{success && (
-  <div
-    className="flex items-center bg-green-50 dark:bg-green-800/80 border border-green-200 dark:border-green-700 text-green-600 dark:text-green-100 px-3 py-2 rounded-md mb-3 text-xs shadow-sm animate-fade-in transition-all duration-300"
-    style={{ minHeight: 0, maxWidth: 320 }}
-  >
-    <span className="flex-1 break-words">{success}</span>
-    <button
-      onClick={() => setSuccess('')}
-      className="ml-2 text-green-400 hover:text-green-700 dark:hover:text-white transition-colors duration-200 text-base"
-      aria-label="Close"
-      type="button"
-      style={{ lineHeight: 1 }}
-    >
-      <i className="bi bi-x"></i>
-    </button>
-  </div>
-)}
-                          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 crystal-card animate-slide-in overflow-y-auto pb-16">
-                            <div className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
-                              <div className="relative flex flex-col items-center">
-                                <div className="relative">
-                                  
-                    <img
-                      src={profile.profile_photo_url || 'https://ui-avatars.com/api/?name=User&background=gold&color=fff'}
-                      alt="Profile"
-                      className="w-32 h-32 rounded-full object-cover border-2 border-gold-500 transition-transform duration-300 hover:scale-105"
-                    />
-                                  {isLoading && (
-                                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-full">
-                                      <div className="w-8 h-8 border-4 border-t-gold-500 border-gray-200 rounded-full animate-spin"></div>
-                                    </div>
-                                  )}
-                                  {isEditing && (
-                                    <button
-                                      onClick={() => fileInputRef.current.click()}
-                                      className="absolute bottom-0 right-0 bg-gold-600 text-white p-2 rounded-full hover:bg-gold-700 transition-colors duration-200"
-                                      disabled={isLoading}
-                                    >
-                                      <i className="bi bi-camera"></i>
-                                    </button>
-                                  )}
-                                </div>
-                                {previewUrl && (
-                                  <div className="mt-4">
-                                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 break-words">{t('preview')}</p>
-                                    <img
-                                      src={previewUrl}
-                                      alt="Preview"
-                                      className="w-24 h-24 rounded-full object-cover border-2 border-gold-300 animate-fade-in"
-                                    />
-                                  </div>
-                                )}
-                                <input
-                                  type="file"
-                                  accept="image/*"
-                                  ref={fileInputRef}
-                                  onChange={handleFileChange}
-                                  className="hidden"
-                                />
-                              </div>
-                              <div className="flex-1 w-full">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                  <div className="relative group">
-                                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1 transition-colors duration-200 group-hover:text-gold-500 break-words">
-                                      <i className="bi bi-person mr-2"></i>
-                                      {t('fullName')}
-                                    </label>
-                                    {isEditing ? (
-                                      <input
-                                        type="text"
-                                        name="full_name"
-                                        value={formData.full_name}
-                                        onChange={handleInputChange}
-                                        className="block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-gold-500 focus:ring focus:ring-gold-500 focus:ring-opacity-50 transition-all duration-200 max-w-full"
-                                        placeholder={t('enterFullName')}
-                                      />
-                                    ) : (
-                                      <p className="text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-600 break-words">
-                                        {profile.full_name || t('notSet')}
-                                      </p>
-                                    )}
-                                  </div>
-                                  <div className="relative group">
-                                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1 transition-colors duration-200 group-hover:text-gold-500 break-words">
-                                      <i className="bi bi-phone mr-2"></i>
-                                      {t('phoneNumber')}
-                                    </label>
-                                    {isEditing ? (
-                                      <input
-                                        type="tel"
-                                        name="phone_number"
-                                        value={formData.phone_number}
-                                        onChange={handleInputChange}
-                                        className="block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-gold-500 focus:ring focus:ring-gold-500 focus:ring-opacity-50 transition-all duration-200 max-w-full"
-                                        placeholder={t('enterPhoneNumber')}
-                                      />
-                                    ) : (
-                                      <p className="text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-600 break-words">
-                                        {profile.phone_number || t('notSet')}
-                                      </p>
-                                    )}
-                                  </div>
-                                  <div className="relative group">
-                                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1 transition-colors duration-200 group-hover:text-gold-500 break-words">
-                                      <i className="bi bi-envelope mr-2"></i>
-                                      {t('email')}
-                                    </label>
-                                    <p className="text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-600 break-words">
-                                      {profile.email || t('notSet')}
-                                    </p>
-                                  </div>
-                                  <div className="relative group">
-                                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1 transition-colors duration-200 group-hover:text-gold-500 break-words">
-                                      <i className="bi bi-tag mr-2"></i>
-                                      {t('referralCode')}
-                                    </label>
-                                    <p className="text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-600 break-words">
-                                      {profile.referral_code || t('notSet')}
-                                    </p>
-                                  </div>
-                                </div>
-                                <div className="relative group">
-  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">
-    <i className="bi bi-people-fill mr-2"></i>
-    Jumlah Invite
-  </label>
-  <p className="text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-600 break-words">
-    {inviteCount}
-  </p>
-</div>
-                                <div className="mt-6 flex flex-wrap gap-4">
-                                  {isEditing ? (
-                                    <>
-                                      <button
-                                        onClick={handleSaveProfile}
-                                        disabled={isLoading}
-                                        className="bg-gold-600 hover:bg-gold-700 text-white py-2 px-4 rounded-md font-medium flex items-center transition-colors duration-300 disabled:opacity-50"
-                                      >
-                                        {isLoading ? (
-                                          <span className="flex items-center">
-                                            <i className="bi bi-arrow-repeat animate-spin mr-2"></i>
-                                            {t('saving')}
-                                          </span>
-                                        ) : (
-                                          <span className="flex items-center">
-                                            <i className="bi bi-save mr-2"></i>
-                                            {t('save')}
-                                          </span>
-                                        )}
-                                      </button>
-                                      <button
-                                        onClick={handleEditToggle}
-                                        className="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-md font-medium flex items-center transition-colors duration-300"
-                                        disabled={isLoading}
-                                      >
-                                        <i className="bi bi-x mr-2"></i>
-                                        {t('cancel')}
-                                      </button>
-                                    </>
-                                  ) : (
-                                    <button
-                                      onClick={handleEditToggle}
-                                      className="bg-gold-600 hover:bg-gold-700 text-white py-2 px-4 rounded-md font-medium flex items-center transition-colors duration-300"
-                                    >
-                                      <i className="bi bi-pencil mr-2"></i>
-                                      {t('editProfile')}
-                                    </button>
-                                  )}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    }
-                    
-                    function WalletPage({ user, t }) {
-                      // State untuk manajemen wallet
-                      const [wallet, setWallet] = React.useState({ 
-                        balance: 0, 
-                        transactions: [], 
-                        wallet_address: null 
-                      });
-                      const [isLoading, setIsLoading] = React.useState(true);
-                      const [isConnecting, setIsConnecting] = React.useState(false);
-                      const [error, setError] = React.useState('');
-                      const [walletStatus, setWalletStatus] = React.useState('');
-                      const [walletConnections, setWalletConnections] = React.useState([]);
-                      const [showConnections, setShowConnections] = React.useState(false);
-                      const [isWalletConnectionEnabled, setIsWalletConnectionEnabled] = React.useState(true);
-                      const [showWalletOptions, setShowWalletOptions] = React.useState(false);
-                      const [currentPage, setCurrentPage] = React.useState(1);
-                      const transactionsPerPage = 5;
-                    
-                      // State untuk deteksi wallet yang terinstall
-                      const [detectedWallets, setDetectedWallets] = React.useState({
-                        metamask: false,
-                        okx: false,
-                        phantom: false
-                      });
-                    
-                      // Fungsi untuk memeriksa wallet yang terinstall
-                      const checkInstalledWallets = () => {
-                        setDetectedWallets({
-                          metamask: !!window.ethereum?.isMetaMask,
-                          okx: !!window.okxwallet,
-                          phantom: !!window.solana?.isPhantom
-                        });
-                      };
-                    
-                      // Cek wallet yang terinstall saat komponen pertama kali render
-                      React.useEffect(() => {
-                        checkInstalledWallets();
-                        
-                        // Cek secara berkala untuk perubahan
-                        const interval = setInterval(checkInstalledWallets, 3000);
-                        return () => clearInterval(interval);
-                      }, []);
-                    
-                      // Fungsi untuk mengambil data wallet dari database
-                      const fetchWalletData = async () => {
-                        setIsLoading(true);
-                        try {
-                          // Ambil data wallet
-                          const { data: walletData, error: walletError } = await supabase
-                            .from('wallet')
-                            .select('balance, wallet_address')
-                            .eq('user_id', user.id)
-                            .single();
-                    
-                          if (walletError) throw walletError;
-                    
-                          // Ambil data transaksi
-                          const { data: transactionData, error: transactionError } = await supabase
-                            .from('transactions')
-                            .select('*')
-                            .eq('user_id', user.id)
-                            .order('created_at', { ascending: false })
-                            .limit(10);
-                    
-                          if (transactionError) throw transactionError;
-                    
-                          // Ambil data koneksi wallet
-                          const { data: connectionsData, error: connectionsError } = await supabase
-                            .from('wallet_connections')
-                            .select('wallet_address, connected_at')
-                            .eq('user_id', user.id)
-                            .order('connected_at', { ascending: false });
-                    
-                          if (connectionsError) throw connectionsError;
-                    
-                          // Update state dengan data yang didapat
-                          setWallet({
-                            balance: walletData?.balance || 0,
-                            wallet_address: walletData?.wallet_address || null,
-                            transactions: transactionData || [],
-                          });
-                    
-                          setWalletConnections(connectionsData || []);
-                    
-                          // Set status wallet jika ada
-                          if (walletData?.wallet_address) {
-                            setWalletStatus(
-                              `${t('Addreas')}: ${walletData.wallet_address.slice(0, 6)}...${walletData.wallet_address.slice(-4)}`
-                            );
-                          }
-                        } catch (err) {
-                          console.error('Gagal mengambil data wallet:', err);
-                          setError(`Gagal memuat wallet: ${err.message}`);
-                        } finally {
-                          setIsLoading(false);
-                        }
-                      };
-                    
-                      // Panggil fungsi fetch data saat komponen pertama render
-                      React.useEffect(() => {
-                        fetchWalletData();
-                      }, [user.id, t]);
-                    
-                      // Fungsi untuk menghubungkan ke MetaMask
-                      const connectMetaMask = async () => {
-                        try {
-                          if (!window.ethereum) {
-                            throw new Error('MetaMask tidak ditemukan!');
-                          }
-                          
-                          // Minta akses ke akun
-                          const accounts = await window.ethereum.request({ 
-                            method: 'eth_requestAccounts' 
-                          });
-                          
-                          if (!accounts || accounts.length === 0) {
-                            throw new Error('Tidak ada akun yang ditemukan di MetaMask');
-                          }
-                          
-                          // Dapatkan chain ID
-                          const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-                          console.log('Terhubung ke chain:', chainId);
-                          
-                          // Handle perubahan chain
-                          window.ethereum.on('chainChanged', (newChainId) => {
-                            console.log('Chain berubah:', newChainId);
-                            window.location.reload();
-                          });
-                          
-                          // Handle perubahan akun
-                          window.ethereum.on('accountsChanged', (newAccounts) => {
-                            console.log('Akun berubah:', newAccounts);
-                            if (newAccounts.length === 0) {
-                              console.log('Wallet terputus');
-                              disconnectWallet();
-                            } else {
-                              connectWallet('metamask');
-                            }
-                          });
-                    
-                          return accounts[0];
-                        } catch (error) {
-                          console.error('Error saat menghubungkan MetaMask:', error);
-                          throw new Error(error.message);
-                        }
-                      };
-                    
-                      // Fungsi untuk menghubungkan ke Phantom Wallet
-                      const connectPhantom = async () => {
-                        try {
-                          if (!window.solana) {
-                            throw new Error('Phantom wallet tidak ditemukan!');
-                          }
-                          
-                          if (window.solana.isPhantom) {
-                            const response = await window.solana.connect();
-                            const publicKey = response.publicKey.toString();
-                            
-                            if (!publicKey) {
-                              throw new Error('Tidak menemukan public key di Phantom');
-                            }
-                            
-                            // Handle perubahan akun
-                            window.solana.on('accountChanged', (newPublicKey) => {
-                              console.log('Akun berubah:', newPublicKey?.toString());
-                              if (newPublicKey) {
-                                connectWallet('phantom');
-                              } else {
-                                disconnectWallet();
-                              }
-                            });
-                            
-                            // Handle disconnect
-                            window.solana.on('disconnect', () => {
-                              console.log('Wallet terputus');
-                              disconnectWallet();
-                            });
-                    
-                            return publicKey;
-                          } else {
-                            throw new Error('Phantom wallet tidak terdeteksi!');
-                          }
-                        } catch (error) {
-                          console.error('Error saat menghubungkan Phantom:', error);
-                          throw new Error(error.message);
-                        }
-                      };
-                    
-                      // Fungsi untuk menghubungkan ke OKX Wallet
-                      const connectOKX = async () => {
-                        try {
-                          if (!window.okxwallet) {
-                            throw new Error('OKX Wallet tidak ditemukan!');
-                          }
-                          
-                          // Minta akses ke akun
-                          const accounts = await window.okxwallet.request({ 
-                            method: 'eth_requestAccounts' 
-                          });
-                          
-                          if (!accounts || accounts.length === 0) {
-                            throw new Error('Tidak ada akun yang ditemukan di OKX Wallet');
-                          }
-                          
-                          // Dapatkan chain ID
-                          const chainId = await window.okxwallet.request({ method: 'eth_chainId' });
-                          console.log('Terhubung ke chain:', chainId);
-                          
-                          // Handle perubahan chain
-                          window.okxwallet.on('chainChanged', (newChainId) => {
-                            console.log('Chain berubah:', newChainId);
-                            window.location.reload();
-                          });
-                          
-                          // Handle perubahan akun
-                          window.okxwallet.on('accountsChanged', (newAccounts) => {
-                            console.log('Akun berubah:', newAccounts);
-                            if (newAccounts.length === 0) {
-                              console.log('Wallet terputus');
-                              disconnectWallet();
-                            } else {
-                              connectWallet('okx');
-                            }
-                          });
-                    
-                          return accounts[0];
-                        } catch (error) {
-                          console.error('Error saat menghubungkan OKX:', error);
-                          throw new Error(error.message);
-                        }
-                      };
-                    
-                      // Fungsi utama untuk menghubungkan wallet
-                      const connectWallet = async (walletType) => {
-                        if (!isWalletConnectionEnabled) {
-                          setError('Koneksi wallet dinonaktifkan. Aktifkan untuk menghubungkan.');
-                          return;
-                        }
-                    
-                        setIsConnecting(true);
-                        setError('');
-                        setWalletStatus('');
-                        setShowWalletOptions(false);
-                    
-                        try {
-                          console.log('Mencoba menghubungkan dengan:', walletType);
-                    
-                          let walletAddress;
-                          if (walletType === 'metamask') {
-                            walletAddress = await connectMetaMask();
-                          } else if (walletType === 'phantom') {
-                            walletAddress = await connectPhantom();
-                          } else if (walletType === 'okx') {
-                            walletAddress = await connectOKX();
-                          } else {
-                            throw new Error('Jenis wallet tidak valid');
-                          }
-                    
-                          // Cek apakah wallet sudah digunakan oleh user lain
-                          const { data: existingWallet, error: checkError } = await supabase
-                            .from('wallet')
-                            .select('user_id')
-                            .eq('wallet_address', walletAddress)
-                            .neq('user_id', user.id)
-                            .single();
-                    
-                          if (checkError && checkError.code !== 'PGRST116') {
-                            throw new Error(`Gagal memverifikasi alamat wallet: ${checkError.message}`);
-                          }
-                    
-                          if (existingWallet) {
-                            throw new Error('Alamat wallet ini sudah digunakan oleh user lain');
-                          }
-                    
-                          // Simpan alamat wallet ke database
-                          const { error: updateError } = await supabase
-                            .from('wallet')
-                            .update({ wallet_address: walletAddress })
-                            .eq('user_id', user.id);
-                    
-                          if (updateError) {
-                            throw new Error(`Gagal menyimpan alamat wallet: ${updateError.message}`);
-                          }
-                    
-                          // Simpan ke tabel koneksi wallet
-                          const { error: connectionError } = await supabase
-                            .from('wallet_connections')
-                            .insert({ user_id: user.id, wallet_address: walletAddress });
-                    
-                          if (connectionError) {
-                            throw new Error(`Gagal menyimpan koneksi wallet: ${connectionError.message}`);
-                          }
-                    
-                          // Update state
-                          setWallet(prev => ({
-                            ...prev,
-                            wallet_address: walletAddress,
-                          }));
-                    
-                          setWalletConnections(prev => [
-                            { wallet_address: walletAddress, connected_at: new Date().toISOString() },
-                            ...prev,
-                          ]);
-                    
-                          setWalletStatus(`Wallet terhubung: ${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`);
-                        } catch (error) {
-                          console.error('Error saat menghubungkan wallet:', error);
-                          setError(error.message);
-                          setWalletStatus('');
-                        } finally {
-                          setIsConnecting(false);
-                        }
-                      };
-                    
-                      // Fungsi untuk memutuskan wallet
-                      const disconnectWallet = async () => {
-                        setIsConnecting(true);
-                        setError('');
-                        setWalletStatus('');
-                    
-                        try {
-                          const { error: updateError } = await supabase
-                            .from('wallet')
-                            .update({ wallet_address: null })
-                            .eq('user_id', user.id);
-                    
-                          if (updateError) {
-                            throw new Error(`Gagal memutuskan wallet: ${updateError.message}`);
-                          }
-                    
-                          setWallet(prev => ({
-                            ...prev,
-                            wallet_address: null,
-                          }));
-                          setWalletStatus('');
-                        } catch (error) {
-                          console.error('Error saat memutuskan wallet:', error);
-                          setError(error.message);
-                        } finally {
-                          setIsConnecting(false);
-                        }
-                      };
-                    
-                      // Fungsi untuk toggle koneksi wallet
-                      const handleWalletAction = () => {
-                        if (wallet.wallet_address) {
-                          disconnectWallet();
-                        } else {
-                          setShowWalletOptions(true);
-                        }
-                      };
-                    
-                      // Fungsi untuk format waktu
-                      const formatTime = (dateString) => {
-                        return new Date(dateString).toLocaleString();
-                      };
-                    
-                      // Logika pagination
-                      const indexOfLastTransaction = currentPage * transactionsPerPage;
-                      const indexOfFirstTransaction = indexOfLastTransaction - transactionsPerPage;
-                      const currentTransactions = wallet.transactions.slice(indexOfFirstTransaction, indexOfLastTransaction);
-                      const totalPages = Math.ceil(wallet.transactions.length / transactionsPerPage);
-                    
-                      const handlePageChange = (pageNumber) => {
-                        setCurrentPage(pageNumber);
-                      };
-                    
-                      // Render UI
-                      return (
-                        <div className="ml-0 md:ml-96 px-4 md:px-6 max-w-full md:max-w-[calc(100%-384px)]">
-                          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 section-title animate-slide-in gold-text-gradient">
-                            {t('wallet')}
-                          </h1>
-                          
-                          {/* Tampilkan error jika ada */}
-                          {error && (
-  <div
-    className="flex items-center bg-red-50 dark:bg-red-800/80 border border-red-200 dark:border-red-700 text-red-600 dark:text-red-100 px-3 py-2 rounded-md mb-3 text-xs shadow-sm animate-fade-in transition-all duration-300"
-    style={{ minHeight: 0, maxWidth: 320 }}
-  >
-    <span className="flex-1 break-words">{error}</span>
-    <button
-      onClick={() => setError('')}
-      className="ml-2 text-red-400 hover:text-red-700 dark:hover:text-white transition-colors duration-200 text-base"
-      aria-label="Close"
-      type="button"
-      style={{ lineHeight: 1 }}
-    >
-      <i className="bi bi-x"></i>
-    </button>
-  </div>
-)}
-                          
-                          {/* Tampilkan status wallet */}
-                          {walletStatus && (
-                            <div className="bg-green-100 dark:bg-green-900 border border-green-400 dark:border-green-700 text-green-700 dark:text-green-100 px-4 py-3 rounded mb-4 animate-slide-in">
-                              {walletStatus}
-                            </div>
-                          )}
-                    
-                          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 crystal-card animate-slide-in">
-                            {/* Tombol-tombol aksi wallet */}
-                            <div className="mb-6 flex items-center space-x-4">
-                              <label className="flex items-center space-x-2">
-                                <span className="text-gray-800 dark:text-white"></span>
-                                <input
-                                  type="checkbox"
-                                  checked={isWalletConnectionEnabled}
-                                  onChange={() => setIsWalletConnectionEnabled(!isWalletConnectionEnabled)}
-                                  className="hidden"
-                                />
-                                <div className={`w-10 h-5 rounded-full transition-colors duration-300 ${isWalletConnectionEnabled ? 'bg-gold-600' : 'bg-gray-400'}`}>
-                                  <div
-                                    className={`w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-300 ${
-                                      isWalletConnectionEnabled ? 'translate-x-5' : 'translate-x-0'
-                                    }`}
-                                  />
-                                </div>
-                              </label>
-                    
-                              <button
-                                onClick={handleWalletAction}
-                                disabled={isConnecting || !isWalletConnectionEnabled}
-                                className={`py-2 px-4 rounded-md font-medium flex items-center transition-colors duration-300 ${
-                                  wallet.wallet_address
-                                    ? 'bg-red-600 hover:bg-red-700 text-white'
-                                    : 'bg-gradient-to-r from-gold-600 to-gold-700 hover:from-gold-700 hover:to-gold-800 text-white'
-                                } ${isConnecting || !isWalletConnectionEnabled ? 'opacity-50 cursor-not-allowed' : ''}`}
-                              >
-                                {isConnecting ? (
-                                  <span className="flex items-center">
-                                    <i className="bi bi-arrow-repeat animate-spin mr-2"></i>
-                                    Memproses...
-                                  </span>
-                                ) : wallet.wallet_address ? (
-                                  <span className="flex items-center">
-                                    <i className="bi bi-x-circle mr-2"></i>
-                                    Putuskan
-                                  </span>
-                                ) : (
-                                  <span className="flex items-center">
-                                    <i className="bi bi-wallet mr-2"></i>
-                                    Hubungkan
-                                  </span>
-                                )}
-                              </button>
-                    
-                              <button
-                                onClick={() => setShowConnections(true)}
-                                className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4 rounded-md font-medium flex items-center transition-colors duration-300 hover:bg-gray-300 dark:hover:bg-gray-600"
-                              >
-                                <i className="bi bi-list mr-2"></i>
-                                
-                              </button>
-                            </div>
-                    
-                            {/* Modal pilihan wallet */}
-                            {showWalletOptions && (
-                              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 animate-slide-in">
-                                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-sm w-full crystal-card">
-                                  <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Pilih Wallet</h2>
-                                  <div className="space-y-4">
-                                    {detectedWallets.metamask && (
-                                      <button
-                                        onClick={() => connectWallet('metamask')}
-                                        className="w-full bg-gradient-to-r from-gold-600 to-gold-700 hover:from-gold-700 hover:to-gold-800 text-white py-2 px-4 rounded-md font-medium flex items-center justify-center space-x-2 transition-colors duration-300"
-                                      >
-                                        <img
-                                          src="https://i.pinimg.com/736x/5c/87/06/5c870644ae73572b4b98a2cb1bac0a3b.jpg"
-                                          alt="MetaMask"
-                                          className="w-6 h-6"
-                                          onError={(e) => (e.target.src = 'https://via.placeholder.com/24')}
-                                        />
-                                        <span>MetaMask</span>
-                                      </button>
-                                    )}
-                                    {detectedWallets.phantom && (
-                                      <button
-                                        onClick={() => connectWallet('phantom')}
-                                        className="w-full bg-gradient-to-r from-gold-600 to-gold-700 hover:from-gold-700 hover:to-gold-800 text-white py-2 px-4 rounded-md font-medium flex items-center justify-center space-x-2 transition-colors duration-300"
-                                      >
-                                        <img
-                                          src="https://i.pinimg.com/736x/3c/52/25/3c522503ac51418684f1d217f13fb36d.jpg"
-                                          alt="Phantom"
-                                          className="w-6 h-6"
-                                          onError={(e) => (e.target.src = 'https://via.placeholder.com/24')}
-                                        />
-                                        <span>Phantom</span>
-                                      </button>
-                                    )}
-                                    {detectedWallets.okx && (
-                                      <button
-                                        onClick={() => connectWallet('okx')}
-                                        className="w-full bg-gradient-to-r from-gold-600 to-gold-700 hover:from-gold-700 hover:to-gold-800 text-white py-2 px-4 rounded-md font-medium flex items-center justify-center space-x-2 transition-colors duration-300"
-                                      >
-                                        <img
-                                          src="https://i.pinimg.com/474x/a4/d5/09/a4d509bafd18c2123c9e5362329a3d94.jpg"
-                                          alt="OKX Wallet"
-                                          className="w-6 h-6"
-                                          onError={(e) => (e.target.src = 'https://via.placeholder.com/24')}
-                                        />
-                                        <span>OKX Wallet</span>
-                                      </button>
-                                    )}
-                                    {!detectedWallets.metamask && !detectedWallets.phantom && !detectedWallets.okx && (
-                                      <div className="text-center py-4 text-gray-500 dark:text-gray-400">
-                                        <p>Tidak ada wallet yang terdeteksi. Silakan install wallet terlebih dahulu.</p>
-                                        <div className="mt-2 space-x-2">
-                                          <a href="https://metamask.io" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-                                            MetaMask
-                                          </a>
-                                          <a href="https://phantom.app" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-                                            Phantom
-                                          </a>
-                                          <a href="https://www.okx.com/web3" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-                                            OKX Wallet
-                                          </a>
-                                        </div>
-                                      </div>
-                                    )}
-                                  </div>
-                                  <button
-                                    onClick={() => setShowWalletOptions(false)}>
-                                    className="mt-4 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4 rounded-md font-medium w-full"
-                                  >
-                                    Batal
-                                  </button>
-                                </div>
-                              </div>
-                            )}
-                    
-                            {/* Modal riwayat koneksi */}
-                            {showConnections && (
-                              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 animate-slide-in">
-                                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-md w-full crystal-card">
-                                  <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Wallet Terhubung</h2>
-                                  {walletConnections.length === 0 ? (
-                                    <p className="text-gray-500 dark:text-gray-400">Belum ada wallet yang terhubung</p>
-                                  ) : (
-                                    <div className="space-y-2 max-h-64 overflow-y-auto">
-                                      {walletConnections.map((connection, index) => (
-                                        <div
-                                          key={index}
-                                          className="p-3 bg-gray-50 dark:bg-gray-700 rounded-md flex justify-between items-center"
-                                        >
-                                          <span className="text-sm text-gray-800 dark:text-white">
-                                            {connection.wallet_address.slice(0, 6)}...{connection.wallet_address.slice(-4)}
-                                          </span>
-                                          <span className="text-xs text-gray-500 dark:text-gray-400">
-                                            {formatTime(connection.connected_at)}
-                                          </span>
-                                        </div>
-                                      ))}
-                                    </div>
-                                  )}
-                                  <button
-                                    onClick={() => setShowConnections(false)}
-                                    className="mt-4 bg-gold-600 hover:bg-gold-700 text-white py-2 px-4 rounded-md font-medium w-full"
-                                  >
-                                    Tutup
-                                  </button>
-                                </div>
-                              </div>
-                            )}
-                    
-                            {isLoading ? (
-                            <div className="flex items-center justify-center py-6">
-                              {/* Spinner dengan efek gradasi dan glow */}
-                              <div className="relative w-12 h-12">
-                                <div className="absolute inset-0 border-4 border-t-transparent border-gold-400 rounded-full animate-spin [animation-duration:1.2s] bg-gradient-to-r from-gold-300/30 to-transparent opacity-50 blur-sm"></div>
-                                <div className="absolute inset-0 border-4 border-t-gold-500 border-gold-200/50 rounded-full animate-spin [animation-duration:1.2s]"></div>
-                                {/* Inner glow untuk kesan premium */}
-                                <div className="absolute inset-2 bg-gold-500/10 rounded-full animate-pulse"></div>
-                              </div>
-                              {/* Teks dengan efek pulsating */}
-                              <span className="ml-4 text-lg font-light text-gray-700 dark:text-gray-200 animate-[pulse_2s_ease-in-out_infinite]">
-                                
-                              </span>
-                            </div>
-                            ) : (
-                              <>
-                                {/* Tampilkan saldo */}
-                                <div className="mb-6">
-                                  <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Saldo</h2>
-                                  <div className="flex items-end">
-                                    <p className="text-3xl font-bold text-gold-600">{wallet.balance.toFixed(8)}</p>
-                                    <span className="ml-2 text-xl text-gray-500 dark:text-gray-400">₿Ǥɱ</span>
-                                  </div>
-                                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                                    ≈ ${(wallet.balance * 50000).toFixed(2)} (Point)
-                                  </p>
-                                </div>
-                    
-                                {/* Tampilkan transaksi */}
-                                <div>
-                                  <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Transaksi</h2>
-                                  {wallet.transactions.length === 0 ? (
-                                    <div className="text-center py-8 text-gray-500 dark:text-gray-400">
-                                      <i className="bi bi-wallet text-3xl mb-2"></i>
-                                      <p>Tidak ada transaksi</p>
-                                    </div>
-                                  ) : (
-                                    <>
-                                      <div className="overflow-x-auto">
-                                        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                                          <thead className="bg-gray-50 dark:bg-gray-700">
-                                            <tr>
-                                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Tanggal</th>
-                                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Jenis</th>
-                                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Jumlah</th>
-                                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Deskripsi</th>
-                                            </tr>
-                                          </thead>
-                                          <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                                            {currentTransactions.map((tx) => (
-                                              <tr key={tx.id}>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                                  {formatTime(tx.created_at)}
-                                                </td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                                  {tx.type}
-                                                </td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gold-600 dark:text-gold-400">
-                                                  {tx.amount.toFixed(8)} ₿Ǥɱ
-                                                </td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                                  {tx.description}
-                                                </td>
-                                              </tr>
-                                            ))}
-                                          </tbody>
-                                        </table>
-                                      </div>
-                                      {/* Pagination */}
-                                      {totalPages > 1 && (
-                                        <div className="flex justify-center mt-4 space-x-2">
-                                          {Array.from({ length: totalPages }, (_, index) => (
-                                            <button
-                                              key={index + 1}
-                                              onClick={() => handlePageChange(index + 1)}
-                                              className={`px-3 py-1 rounded-md text-sm font-medium transition-colors duration-300 ${
-                                                currentPage === index + 1
-                                                  ? 'bg-gold-600 text-white'
-                                                  : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600'
-                                              }`}
-                                            >
-                                              {index + 1}
-                                            </button>
-                                          ))}
-                                        </div>
-                                      )}
-                                    </>
-                                  )}
-                                </div>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                      );
-                    }
-                    function LeaderboardPage({ user, t }) {
-  const [leaderboard, setLeaderboard] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(false);
+function WalletPage({ user, t }) {
+  const [wallet, setWallet] = React.useState({ balance: 0 });
+  const [transactions, setTransactions] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
   const [error, setError] = React.useState('');
-
-  // Ambil data leaderboard + cek user pernah beli booster
-  const fetchLeaderboard = async () => {
-  setIsLoading(true);
-  setError('');
-  try {
-    // Ambil wallet dan profile
-    const { data: walletData, error: walletError } = await supabase
-      .from('wallet')
-      .select(`
-        balance,
-        user_id,
-        profiles(full_name, profile_photo)
-      `)
-      .order('balance', { ascending: false })
-      .limit(50);
-
-    if (walletError) throw walletError;
-
-    // Ambil user_id semua leaderboard
-    const userIds = walletData.map((w) => w.user_id);
-
-    // Ambil semua pembelian booster user di leaderboard
-    const { data: boosterData, error: boosterError } = await supabase
-      .from('user_boost_purchases')
-      .select('user_id')
-      .in('user_id', userIds);
-
-    if (boosterError) throw boosterError;
-
-    // Buat set user_id yang pernah beli booster
-    const premiumUserIds = new Set(boosterData.map((b) => b.user_id));
-
-    // Gabungkan data
-    const transformedData = walletData.map((entry, index) => ({
-      rank: index + 1,
-      user_id: entry.user_id,
-      balance: entry.balance || 0,
-      full_name: entry.profiles?.full_name || 'Anonymous',
-      profile_photo: entry.profiles?.profile_photo || null,
-      hasPremium: premiumUserIds.has(entry.user_id),
-    }));
-
-    setLeaderboard(transformedData);
-  } catch (err) {
-    setError(err.message || 'Failed to fetch leaderboard');
-  } finally {
-    setIsLoading(false);
-  }
-};
+  const [connectedWallets, setConnectedWallets] = React.useState([]);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [selectedWalletType, setSelectedWalletType] = React.useState('metamask');
+  const [isConnecting, setIsConnecting] = React.useState(false);
 
   React.useEffect(() => {
-    fetchLeaderboard();
-  }, []);
+    fetchWalletData();
+    fetchTransactions();
+    fetchConnectedWallets();
+  }, [user]);
+
+  const fetchWalletData = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('wallet')
+        .select('balance, last_updated')
+        .eq('user_id', user.id)
+        .maybeSingle();
+
+      if (error) throw error;
+      setWallet(data || { balance: 0, last_updated: new Date().toISOString() });
+    } catch (err) {
+      setError(`Failed to fetch wallet data: ${err.message}`);
+    }
+  };
+
+  const fetchTransactions = async () => {
+    setIsLoading(true);
+    try {
+      const { data, error } = await supabase
+        .from('transactions')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false })
+        .limit(50);
+
+      if (error) throw error;
+      setTransactions(data || []);
+    } catch (err) {
+      setError(`Failed to fetch transactions: ${err.message}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fetchConnectedWallets = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('connected_wallets')
+        .select('*')
+        .eq('user_id', user.id);
+
+      if (error) throw error;
+      setConnectedWallets(data || []);
+    } catch (err) {
+      setError(`Failed to fetch connected wallets: ${err.message}`);
+    }
+  };
+
+  const connectWallet = async () => {
+    setIsConnecting(true);
+    setError('');
+    try {
+      let walletAddress = '';
+      let walletType = selectedWalletType;
+
+      if (selectedWalletType === 'metamask') {
+        if (!window.ethereum) {
+          throw new Error(t('metaMaskNotFound'));
+        }
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        if (!accounts || accounts.length === 0) {
+          throw new Error(t('metaMaskNoAccounts'));
+        }
+        walletAddress = accounts[0];
+      } else if (selectedWalletType === 'phantom') {
+        if (!window.solana) {
+          throw new Error(t('phantomNotFound'));
+        }
+        const resp = await window.solana.connect();
+        if (!resp.publicKey) {
+          throw new Error(t('phantomNoPublicKey'));
+        }
+        walletAddress = resp.publicKey.toString();
+      } else if (selectedWalletType === 'okx') {
+        if (!window.okxwallet) {
+          throw new Error(t('okxNotFound'));
+        }
+        const accounts = await window.okxwallet.ethereum.request({ method: 'eth_requestAccounts' });
+        if (!accounts || accounts.length === 0) {
+          throw new Error(t('okxNoAccounts'));
+        }
+        walletAddress = accounts[0];
+      } else {
+        throw new Error(t('invalidWalletType'));
+      }
+
+      // Check if wallet is already connected to another user
+      const { data: existingWallet, error: checkError } = await supabase
+        .from('connected_wallets')
+        .select('user_id')
+        .eq('wallet_address', walletAddress)
+        .not('user_id', 'eq', user.id)
+        .maybeSingle();
+
+      if (checkError) throw checkError;
+      if (existingWallet) {
+        throw new Error(t('walletAddressInUse'));
+      }
+
+      // Add wallet to database
+      const { error: insertError } = await supabase
+        .from('connected_wallets')
+        .insert({
+          user_id: user.id,
+          wallet_type: walletType,
+          wallet_address: walletAddress,
+          connected_at: new Date().toISOString(),
+        });
+
+      if (insertError) throw insertError;
+
+      await fetchConnectedWallets();
+      setIsModalOpen(false);
+    } catch (err) {
+      setError(`Failed to connect wallet: ${err.message}`);
+    } finally {
+      setIsConnecting(false);
+    }
+  };
+
+  const disconnectWallet = async (walletId) => {
+    try {
+      const { error } = await supabase
+        .from('connected_wallets')
+        .delete()
+        .eq('id', walletId)
+        .eq('user_id', user.id);
+
+      if (error) throw error;
+      await fetchConnectedWallets();
+    } catch (err) {
+      setError(`Failed to disconnect wallet: ${err.message}`);
+    }
+  };
+
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleString();
+  };
+
+  const formatTransactionType = (type) => {
+    switch (type) {
+      case 'mining':
+        return 'Mining Reward';
+      case 'task_reward':
+        return 'Task Reward';
+      case 'referral':
+        return 'Referral Bonus';
+      case 'purchase':
+        return 'Purchase';
+      default:
+        return type;
+    }
+  };
+
+  const truncateAddress = (address) => {
+    if (!address) return '';
+    return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
+  };
 
   return (
     <div className="ml-0 md:ml-96 px-4 md:px-6 max-w-full md:max-w-[calc(100%-384px)]">
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 section-title animate-slide-in gold-text-gradient">
-        {t('leaderboard')}
-      </h1>
       {error && (
-        <div className="bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-100 px-4 py-3 rounded mb-4 animate-slide-in">
+        <div className="bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-100 px-4 py-3 rounded mb-4">
           {error}
+          <button
+            onClick={() => setError('')}
+            className="ml-2 text-red-700 dark:text-red-100 hover:text-red-900 dark:hover:text-red-300"
+          >
+            <i className="bi bi-x"></i>
+          </button>
         </div>
       )}
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 crystal-card animate-slide-in">
-        <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
-          {t('Top Miners')}
-        </h2>
-        {isLoading ? (
-          <div className="flex items-center justify-center py-6">
-            <div className="relative w-12 h-12">
-              <div className="absolute inset-0 border-4 border-t-transparent border-gold-400 rounded-full animate-spin [animation-duration:1.2s] bg-gradient-to-r from-gold-300/30 to-transparent opacity-50 blur-sm"></div>
-              <div className="absolute inset-0 border-4 border-t-gold-500 border-gold-200/50 rounded-full animate-spin [animation-duration:1.2s]"></div>
-              <div className="absolute inset-2 bg-gold-500/10 rounded-full animate-pulse"></div>
+
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 crystal-card transition-colors duration-300 animate-slide-in mb-6">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 section-title gold-text-gradient">
+          {t('wallet')}
+        </h1>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-lg p-6 text-white shadow-lg">
+            <div className="flex justify-between items-start mb-4">
+              <div>
+                <h2 className="text-lg font-semibold opacity-80">₿Ǥɱ {t('balance')}</h2>
+                <p className="text-3xl font-bold mt-1">{wallet.balance.toFixed(8)}</p>
+              </div>
+              <i className="bi bi-currency-bitcoin text-4xl opacity-80"></i>
             </div>
-            <span className="ml-4 text-lg font-light text-gray-700 dark:text-gray-200 animate-[pulse_2s_ease-in-out_infinite]">
-              Loading...
-            </span>
+            <div className="text-sm opacity-80">
+              {t('lastUpdated')}: {formatDate(wallet.last_updated)}
+            </div>
+          </div>
+
+          <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-lg">
+            <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
+              {t('connectedWallets')}
+            </h2>
+            {connectedWallets.length === 0 ? (
+              <div className="text-center py-4">
+                <p className="text-gray-500 dark:text-gray-400 mb-4">{t('noConnectedWallets')}</p>
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="px-4 py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-medium rounded-lg shadow-lg transition-colors duration-300 flex items-center mx-auto"
+                >
+                  <i className="bi bi-wallet-fill mr-2"></i>
+                  {t('Connect')}
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {connectedWallets.map((wallet) => (
+                  <div
+                    key={wallet.id}
+                    className="flex justify-between items-center bg-white dark:bg-gray-800 p-3 rounded-lg shadow"
+                  >
+                    <div className="flex items-center">
+                      <i
+                        className={`bi ${
+                          wallet.wallet_type === 'metamask'
+                            ? 'bi-currency-ethereum'
+                            : wallet.wallet_type === 'phantom'
+                            ? 'bi-currency-bitcoin'
+                            : 'bi-wallet'
+                        } text-xl mr-3 ${
+                          wallet.wallet_type === 'metamask'
+                            ? 'text-purple-500'
+                            : wallet.wallet_type === 'phantom'
+                            ? 'text-blue-500'
+                            : 'text-green-500'
+                        }`}
+                      ></i>
+                      <div>
+                        <p className="text-sm font-medium text-gray-800 dark:text-white">
+                          {wallet.wallet_type.charAt(0).toUpperCase() + wallet.wallet_type.slice(1)}
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          {truncateAddress(wallet.wallet_address)}
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => disconnectWallet(wallet.id)}
+                      className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
+                    >
+                      <i className="bi bi-trash"></i>
+                    </button>
+                  </div>
+                ))}
+                <div className="text-center pt-3">
+                  <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="px-3 py-1 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white text-sm font-medium rounded shadow transition-colors duration-300"
+                  >
+                    <i className="bi bi-plus-lg mr-1"></i>
+                    {t('Connect')}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-xl font-semibold text-gray-800 dark:text-white gold-text-gradient mb-4">
+            {t('transactions')}
+          </h2>
+          {isLoading ? (
+            <div className="flex justify-center items-center py-8">
+              <i className="bi bi-arrow-repeat animate-spin text-3xl text-gold-600"></i>
+            </div>
+          ) : transactions.length === 0 ? (
+            <div className="text-center py-8 text-gray-500 dark:text-gray-400">
+              {t('noTransactions')}
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="min-w-full bg-white dark:bg-gray-800 rounded-lg overflow-hidden">
+                <thead className="bg-gray-100 dark:bg-gray-700">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      {t('date')}
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      {t('type')}
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      {t('amount')}
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      {t('description')}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                  {transactions.map((transaction) => (
+                    <tr key={transaction.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                        {formatDate(transaction.created_at)}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                        {formatTransactionType(transaction.type)}
+                      </td>
+                      <td
+                        className={`px-6 py-4 whitespace-nowrap text-sm font-medium ${
+                          transaction.amount >= 0
+                            ? 'text-green-600 dark:text-green-400'
+                            : 'text-red-600 dark:text-red-400'
+                        }`}
+                      >
+                        {transaction.amount >= 0 ? '+' : ''}
+                        {transaction.amount.toFixed(8)} ₿Ǥɱ
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 max-w-xs truncate">
+                        {transaction.description}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Connect Wallet Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full wallet-connections-modal">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                {t('selectWallet')}
+              </h3>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+              >
+                <i className="bi bi-x-lg"></i>
+              </button>
+            </div>
+
+            <div className="space-y-4 mb-6">
+              <div
+                className={`flex items-center p-4 border rounded-lg cursor-pointer ${
+                  selectedWalletType === 'metamask'
+                    ? 'border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20'
+                    : 'border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700'
+                }`}
+                onClick={() => setSelectedWalletType('metamask')}
+              >
+                <div className="w-10 h-10 flex items-center justify-center bg-orange-100 dark:bg-orange-900/30 rounded-full mr-4">
+                  <i className="bi bi-currency-ethereum text-orange-500 text-xl"></i>
+                </div>
+                <div>
+                  <h4 className="font-medium text-gray-900 dark:text-white">MetaMask</h4>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Connect using MetaMask wallet
+                  </p>
+                </div>
+              </div>
+
+              <div
+                className={`flex items-center p-4 border rounded-lg cursor-pointer ${
+                  selectedWalletType === 'phantom'
+                    ? 'border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20'
+                    : 'border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700'
+                }`}
+                onClick={() => setSelectedWalletType('phantom')}
+              >
+                <div className="w-10 h-10 flex items-center justify-center bg-purple-100 dark:bg-purple-900/30 rounded-full mr-4">
+                  <i className="bi bi-currency-bitcoin text-purple-500 text-xl"></i>
+                </div>
+                <div>
+                  <h4 className="font-medium text-gray-900 dark:text-white">Phantom</h4>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Connect using Phantom wallet
+                  </p>
+                </div>
+              </div>
+
+              <div
+                className={`flex items-center p-4 border rounded-lg cursor-pointer ${
+                  selectedWalletType === 'okx'
+                    ? 'border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20'
+                    : 'border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700'
+                }`}
+                onClick={() => setSelectedWalletType('okx')}
+              >
+                <div className="w-10 h-10 flex items-center justify-center bg-blue-100 dark:bg-blue-900/30 rounded-full mr-4">
+                  <i className="bi bi-wallet2 text-blue-500 text-xl"></i>
+                </div>
+                <div>
+                  <h4 className="font-medium text-gray-900 dark:text-white">OKX Wallet</h4>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Connect using OKX wallet
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-end space-x-3">
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="px-4 py-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-white rounded-lg transition-colors duration-300"
+              >
+                {t('cancel')}
+              </button>
+              <button
+                onClick={connectWallet}
+                disabled={isConnecting}
+                className="px-4 py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-medium rounded-lg shadow-lg transition-colors duration-300 flex items-center"
+              >
+                {isConnecting ? (
+                  <>
+                    <i className="bi bi-arrow-repeat animate-spin mr-2"></i>
+                    {t('processing')}
+                  </>
+                ) : (
+                  <>
+                    <i className="bi bi-link-45deg mr-2"></i>
+                    {t('Connect')}
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function LeaderboardPage({ user, t }) {
+  const [leaderboard, setLeaderboard] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [error, setError] = React.useState('');
+  const [userRank, setUserRank] = React.useState(null);
+  const [timeframe, setTimeframe] = React.useState('all');
+
+  React.useEffect(() => {
+    fetchLeaderboard();
+  }, [timeframe]);
+
+  const fetchLeaderboard = async () => {
+    setIsLoading(true);
+    try {
+      let query = supabase.rpc('get_leaderboard');
+      
+      if (timeframe === 'week') {
+        query = supabase.rpc('get_weekly_leaderboard');
+      } else if (timeframe === 'month') {
+        query = supabase.rpc('get_monthly_leaderboard');
+      }
+      
+      const { data, error } = await query;
+
+      if (error) throw error;
+      
+      setLeaderboard(data || []);
+      
+      // Find user's rank
+      if (user) {
+        const userPosition = data.findIndex(item => item.user_id === user.id);
+        setUserRank(userPosition !== -1 ? userPosition + 1 : null);
+      }
+    } catch (err) {
+      setError(`Failed to fetch leaderboard: ${err.message}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="ml-0 md:ml-96 px-4 md:px-6 max-w-full md:max-w-[calc(100%-384px)]">
+      {error && (
+        <div className="bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-100 px-4 py-3 rounded mb-4">
+          {error}
+          <button
+            onClick={() => setError('')}
+            className="ml-2 text-red-700 dark:text-red-100 hover:text-red-900 dark:hover:text-red-300"
+          >
+            <i className="bi bi-x"></i>
+          </button>
+        </div>
+      )}
+
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 crystal-card transition-colors duration-300 animate-slide-in">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 section-title gold-text-gradient">
+          {t('leaderboard')}
+        </h1>
+
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
+            {t('Top Miners')}
+          </h2>
+          <div className="flex space-x-2">
+            <button
+              onClick={() => setTimeframe('all')}
+              className={`px-3 py-1 rounded-lg text-sm font-medium ${
+                timeframe === 'all'
+                  ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-white'
+                  : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white'
+              }`}
+            >
+              All Time
+            </button>
+            <button
+              onClick={() => setTimeframe('month')}
+              className={`px-3 py-1 rounded-lg text-sm font-medium ${
+                timeframe === 'month'
+                  ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-white'
+                  : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white'
+              }`}
+            >
+              Monthly
+            </button>
+            <button
+              onClick={() => setTimeframe('week')}
+              className={`px-3 py-1 rounded-lg text-sm font-medium ${
+                timeframe === 'week'
+                  ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-white'
+                  : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white'
+              }`}
+            >
+              Weekly
+            </button>
+          </div>
+        </div>
+
+        {userRank !== null && (
+          <div className="bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 border border-yellow-500/30 rounded-lg p-4 mb-6">
+            <div className="flex items-center">
+              <div className="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                {userRank}
+              </div>
+              <div>
+                <p className="text-gray-700 dark:text-gray-300">Your Rank</p>
+                <p className="text-lg font-semibold text-gray-900 dark:text-white">
+                  {userRank === 1 ? '🏆 Top Miner!' : userRank <= 3 ? '🥇 Top 3!' : userRank <= 10 ? '🌟 Top 10!' : `Rank #${userRank}`}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {isLoading ? (
+          <div className="flex justify-center items-center py-12">
+            <i className="bi bi-arrow-repeat animate-spin text-4xl text-gold-600"></i>
           </div>
         ) : leaderboard.length === 0 ? (
-          <p className="text-gray-600 dark:text-gray-300">{t('noData')}</p>
+          <div className="text-center py-12 text-gray-500 dark:text-gray-400">
+            {t('noData')}
+          </div>
         ) : (
-          <div className="space-y-3 leaderboard-container">
-            {leaderboard.map((entry) => (
-              <div
-                key={entry.user_id}
-                className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-md transition-transform duration-200 hover:scale-[1.02] hover:shadow-md leaderboard-item"
-              >
-                <div className="flex items-center space-x-3 min-w-[200px]">
-                  <div className="flex items-center space-x-1 w-8 flex-shrink-0 rank">
-                    {entry.rank === 1 && <i className="bi bi-trophy-fill text-gold-500 text-sm"></i>}
-                    {entry.rank === 2 && <i className="bi bi-trophy-fill text-gray-400 text-sm"></i>}
-                    {entry.rank === 3 && <i className="bi bi-trophy-fill text-amber-600 text-sm"></i>}
-                    <span className="text-base font-bold text-gold-600">
-                      {entry.rank}
+          <div className="leaderboard-container">
+            <div className="space-y-4">
+              {leaderboard.map((item, index) => (
+                <div
+                  key={item.user_id}
+                  className={`leaderboard-item bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md ${
+                    item.user_id === user?.id
+                      ? 'border-2 border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20'
+                      : ''
+                  }`}
+                >
+                  <div className="flex items-center">
+                    <div className="rank">
+                      {index === 0 ? (
+                        <span className="text-2xl">🥇</span>
+                      ) : index === 1 ? (
+                        <span className="text-2xl">🥈</span>
+                      ) : index === 2 ? (
+                        <span className="text-2xl">🥉</span>
+                      ) : (
+                        <span className="w-8 h-8 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center font-bold text-gray-700 dark:text-gray-300">
+                          {index + 1}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center ml-4">
+                      {item.profile_photo ? (
+                        <img
+                          src={item.profile_photo || "/placeholder.svg"}
+                          alt="Miner"
+                          className="w-10 h-10 rounded-full object-cover border-2 border-gray-200 dark:border-gray-700"
+                        />
+                      ) : (
+                        <div className="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center">
+                          <i className="bi bi-person text-gray-500 dark:text-gray-400"></i>
+                        </div>
+                      )}
+                      <div className="ml-3 max-w-200px">
+                        <p className="font-medium text-gray-900 dark:text-white truncate">
+                          {item.full_name || item.email || 'Anonymous Miner'}
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          {item.mining_sessions} sessions
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="balance">
+                    <span className="font-bold text-yellow-600 dark:text-yellow-400">
+                      {parseFloat(item.total_mined).toFixed(8)} ₿Ǥɱ
                     </span>
                   </div>
-                  {entry.profile_photo ? (
-                    <img
-                      className="w-10 h-10 rounded-full object-cover border-2 border-gold-200 dark:border-gold-700 flex-shrink-0"
-                      src={entry.profile_photo}
-                      alt={entry.full_name}
-                    />
-                  ) : (
-                    <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center border-2 border-gold-200 dark:border-gold-700 flex-shrink-0">
-                      <i className="bi bi-person-circle text-lg text-gray-400 dark:text-gray-600"></i>
-                    </div>
-                  )}
-                  <span className="text-gray-800 dark:text-white font-medium max-w-[200px] flex items-center">
-  {entry.full_name}
-  {entry.hasPremium && (
-    <i
-      className="bi bi-star-fill ml-2 text-yellow-400"
-      style={{
-        fontSize: '1.1em',
-        filter: 'drop-shadow(0 0 6px #FFD700) drop-shadow(0 0 12px #FFD700)',
-        animation: 'gold-glow 1.5s infinite alternate'
-      }}
-      title="Premium User"
-    ></i>
-  )}
-</span>
                 </div>
-                <span className="text-gold-600 font-semibold text-sm balance flex-shrink-0 min-w-[100px] text-right">
-                  {entry.balance.toFixed(8)} ₿Ǥɱ
-                </span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
       </div>
     </div>
   );
 }
-                    
-                    function SettingsPage({ darkMode, toggleDarkMode, t }) {
-                      const [emailNotifications, setEmailNotifications] = React.useState(true);
-                      const [pushNotifications, setPushNotifications] = React.useState(false);
-                      const [notificationError, setNotificationError] = React.useState('');
-                      const [isSendingNotification, setIsSendingNotification] = React.useState(false);
-                    
-                      // Fungsi untuk meminta izin notifikasi sistem
-                      const requestNotificationPermission = async () => {
-                        if (!("Notification" in window)) {
-                          return { granted: false, error: t('notificationsNotSupported') || 'Notifications are not supported in this browser.' };
-                        }
-                    
-                        try {
-                          const permission = await Notification.requestPermission();
-                          if (permission === 'granted') {
-                            return { granted: true };
-                          } else {
-                            return {
-                              granted: false,
-                              error: t('notificationPermissionDenied') || 'Notification permission denied. Please enable notifications in your browser settings.',
-                            };
-                          }
-                        } catch (err) {
-                          console.error('requestNotificationPermission: Error:', err);
-                          return { granted: false, error: t('notificationError') || 'Failed to request notification permission.' };
-                        }
-                      };
-                    
-                      // Fungsi untuk menampilkan notifikasi sistem
-                      const showSystemNotification = () => {
-                        new Notification(t('appUpdate') || 'Pembaruan dari Saya', {
-                          body: t('updateMessage') || 'Ada pembaruan baru di aplikasi Anda!',
-                          icon: 'https://via.placeholder.com/32', // Ganti dengan ikon aplikasi Anda
-                        });
-                      };
-                    
-                      // Fungsi untuk memvalidasi email
-                      const validateEmail = (email) => {
-                        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                        return re.test(email);
-                      };
-                    
-                      // Fungsi untuk mengirim notifikasi email
-                      const sendEmailNotification = async (userId, fullName, email) => {
-                        try {
-                          // Validasi email
-                          if (!validateEmail(email)) {
-                            throw new Error(t('invalidEmail') || 'Invalid email address.');
-                          }
-                    
-                          const payload = {
-                            user_id: userId,
-                            full_name: fullName || 'Pengguna',
-                            email: email,
-                            subject: t('appUpdate') || 'Pembaruan Aplikasi',
-                            message: t('updateMessageEmail') || `Halo ${fullName || 'Pengguna'}, ada pembaruan baru di aplikasi Anda. Periksa pengaturan Anda!`,
-                          };
-                    
-                          console.log('sendEmailNotification: Sending request:', {
-                            user_id: userId,
-                            email,
-                            subject: payload.subject.substring(0, 50),
-                          });
-                    
-                          const { data, error } = await supabase.functions.invoke('send-notification-email', {
-                            body: payload,
-                          });
-                    
-                          if (error) {
-                            console.error('sendEmailNotification: Error:', {
-                              message: error.message,
-                              code: error.code,
-                              details: error.details,
-                              hint: error.hint,
-                            });
-                            throw new Error(error.message || (t('emailNotificationFailed') || 'Failed to send email notification. Please check your email settings.'));
-                          }
-                    
-                          console.log('sendEmailNotification: Success:', data);
-                          return data;
-                        } catch (err) {
-                          console.error('sendEmailNotification: Error:', err);
-                          throw err;
-                        }
-                      };
-                    
-                      // Fungsi untuk menangani klik tombol Cetak Notifikasi
-                      const handleSendNotification = async () => {
-                        setIsSendingNotification(true);
-                        setNotificationError('');
-                    
-                        let systemNotificationError = '';
-                        let emailNotificationError = '';
-                    
-                        try {
-                          // Ambil data pengguna dari Supabase
-                          const { data: userSession } = await supabase.auth.getUser();
-                          if (!userSession?.user?.id) {
-                            throw new Error(t('userNotAuthenticated') || 'User not authenticated.');
-                          }
-                          const userId = userSession.user.id;
-                    
-                          const { data: profileData, error: profileError } = await supabase
-                            .from('profiles')
-                            .select('full_name, email')
-                            .eq('id', userId)
-                            .single();
-                    
-                          if (profileError) {
-                            console.error('handleSendNotification: Profile error:', profileError);
-                            throw new Error(`Failed to fetch profile: ${profileError.message}`);
-                          }
-                    
-                          if (!profileData?.email && emailNotifications) {
-                            throw new Error(t('emailNotSet') || 'Email address not set in profile. Please update your profile.');
-                          }
-                    
-                          // Kirim notifikasi sistem jika push notifications diaktifkan
-                          if (pushNotifications) {
-                            const { granted, error } = await requestNotificationPermission();
-                            if (granted) {
-                              showSystemNotification();
-                            } else {
-                              systemNotificationError = error;
-                            }
-                          }
-                    
-                          // Kirim email jika email notifications diaktifkan
-                          if (emailNotifications) {
-                            try {
-                              await sendEmailNotification(userId, profileData.full_name, profileData.email);
-                            } catch (err) {
-                              emailNotificationError = err.message;
-                            }
-                          }
-                    
-                          // Tampilkan error jika ada
-                          if (systemNotificationError && emailNotificationError) {
-                            setNotificationError(`${systemNotificationError} ${emailNotificationError}`);
-                          } else if (systemNotificationError) {
-                            setNotificationError(systemNotificationError);
-                          } else if (emailNotificationError) {
-                            setNotificationError(emailNotificationError);
-                          }
-                        } catch (err) {
-                          console.error('handleSendNotification: Error:', err);
-                          setNotificationError(err.message);
-                        } finally {
-                          setIsSendingNotification(false);
-                        }
-                      };
-                    
-                      return (
-                        <div className="ml-0 md:ml-96 px-4 md:px-6 max-w-full md:max-w-[calc(100%-384px)]">
-                          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 section-title animate-slide-in">
-                            {t('settings')}
-                          </h1>
-                          {notificationError && (
-                            <div className="bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-100 px-4 py-3 rounded mb-4 animate-slide-in">
-                              {notificationError}
-                              {notificationError.includes('notificationPermissionDenied') && (
-                                <p className="mt-2 text-sm">
-                                  {t('enableNotificationsGuide') || (
-                                    <>
-                                      To enable notifications, go to your browser settings and allow notifications for this site.{' '}
-                                      <a
-                                        href="https://support.google.com/chrome/answer/6148059"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-blue-600 dark:text-blue-400 underline"
-                                      >
-                                        Learn more
-                                      </a>
-                                    </>
-                                  )}
-                                </p>
-                              )}
-                              {notificationError.includes('User not found') && (
-                                <p className="mt-2 text-sm">
-                                  {t('userNotFoundGuide') || (
-                                    <>
-                                      User profile not found. Please ensure your profile is set up correctly.{' '}
-                                      <a
-                                        href="/profile"
-                                        className="text-blue-600 dark:text-blue-400 underline"
-                                      >
-                                        Update profile
-                                      </a>
-                                    </>
-                                  )}
-                                </p>
-                              )}
-                              {notificationError.includes('Invalid email address') && (
-                                <p className="mt-2 text-sm">
-                                  {t('invalidEmailGuide') || (
-                                    <>
-                                      The email address is invalid. Please update your profile with a valid email address.{' '}
-                                      <a
-                                        href="/profile"
-                                        className="text-blue-600 dark:text-blue-400 underline"
-                                      >
-                                        Update profile
-                                      </a>
-                                    </>
-                                  )}
-                                </p>
-                              )}
-                              {notificationError.includes('Failed to send email') && (
-                                <p className="mt-2 text-sm">
-                                  {t('emailNotificationGuide') || (
-                                    <>
-                                      Unable to send email. Please ensure your email address is correct in your profile and try again.{' '}
-                                      <a
-                                        href="/profile"
-                                        className="text-blue-600 dark:text-blue-400 underline"
-                                      >
-                                        Update profile
-                                      </a>
-                                    </>
-                                  )}
-                                </p>
-                              )}
-                            </div>
-                          )}
-                          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 crystal-card animate-slide-in">
-                            <div className="space-y-6">
-                              <div className="flex items-center justify-between">
-                                <div>
-                                  <h2 className="text-lg font-semibold text-gray-800 dark:text-white">{t('darkMode')}</h2>
-                                  <p className="text-sm text-gray-500 dark:text-gray-400">{t('darkModeDescription') || 'Toggle between light and dark themes'}</p>
-                                </div>
-                                <button
-                                  onClick={toggleDarkMode}
-                                  className={`relative inline-flex items-center h-6 rounded-full w-11 transition-colors duration-200 ${
-                                    darkMode ? 'bg-gold-600' : 'bg-gray-200'
-                                  }`}
-                                >
-                                  <span
-                                    className={`inline-block w-4 h-4 transform bg-white rounded-full transition-transform duration-200 ${
-                                      darkMode ? 'translate-x-6' : 'translate-x-1'
-                                    }`}
-                                  />
-                                </button>
-                              </div>
-                              <div>
-                                <h2 className="text-lg font-semibold text-gray-800 dark:text-white">{t('notifications')}</h2>
-                                <p className="text-sm text-gray-500 dark:text-gray-400">{t('notificationsDescription') || 'Manage your notification preferences'}</p>
-                                <div className="mt-2 space-y-2">
-                                  <label className="flex items-center">
-                                    <input
-                                      type="checkbox"
-                                      checked={emailNotifications}
-                                      onChange={() => setEmailNotifications(!emailNotifications)}
-                                      className="h-4 w-4 text-gold-600 focus:ring-gold-500 border-gray-300 dark:border-gray-600 rounded"
-                                    />
-                                    <span className="ml-2 text-sm text-gray-600 dark:text-gray-300">{t('emailNotifications') || 'Email notifications'}</span>
-                                  </label>
-                                  <label className="flex items-center">
-                                    <input
-                                      type="checkbox"
-                                      checked={pushNotifications}
-                                      onChange={() => setPushNotifications(!pushNotifications)}
-                                      className="h-4 w-4 text-gold-600 focus:ring-gold-500 border-gray-300 dark:border-gray-600 rounded"
-                                    />
-                                    <span className="ml-2 text-sm text-gray-600 dark:text-gray-300">{t('pushNotifications') || 'Push notifications'}</span>
-                                  </label>
-                                  <button
-                                    onClick={handleSendNotification}
-                                    disabled={isSendingNotification || (!emailNotifications && !pushNotifications)}
-                                    className={`mt-4 bg-gradient-to-r from-gold-600 to-gold-700 hover:from-gold-700 hover:to-gold-800 text-white py-2 px-4 rounded-md font-medium flex items-center transition-colors duration-300 ${
-                                      isSendingNotification || (!emailNotifications && !pushNotifications) ? 'opacity-50 cursor-not-allowed' : ''
-                                    }`}
-                                  >
-                                    {isSendingNotification ? (
-                                      <span className="flex items-center">
-                                        <i className="bi bi-arrow-repeat animate-spin mr-2"></i>
-                                        {t('sending')}
-                                      </span>
-                                    ) : (
-                                      <span className="flex items-center">
-                                        <i className="bi bi-bell mr-2"></i>
-                                        {t('sendNotification') || 'Cetak Notifikasi'}
-                                      </span>
-                                    )}
-                                  </button>
-                                </div>
-                              </div>
-                              <div>
-                                <h2 className="text-lg font-semibold text-gray-800 dark:text-white">{t('about')}</h2>
-                                <p className="text-sm text-gray-500 dark:text-gray-400">{t('version') || 'Version 1.0.0'}</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    }
-                    
-                        // Render the App
-                        ReactDOM.render(<App />, document.getElementById('root'));
-                      </script>
-                    </body>
-                    </html>
+
+function SettingsPage({ darkMode, toggleDarkMode, t }) {
+  const [notifications, setNotifications] = React.useState({
+    email: false,
+    push: false,
+  });
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState('');
+  const [success, setSuccess] = React.useState('');
+
+  const handleNotificationChange = (type) => {
+    setNotifications((prev) => ({
+      ...prev,
+      [type]: !prev[type],
+    }));
+  };
+
+  const requestNotificationPermission = async () => {
+    try {
+      if (!('Notification' in window)) {
+        setError('This browser does not support desktop notifications');
+        return;
+      }
+
+      const permission = await Notification.requestPermission();
+      if (permission === 'granted') {
+        setSuccess('Notification permission granted!');
+        setNotifications((prev) => ({
+          ...prev,
+          push: true,
+        }));
+      } else {
+        setError('Notification permission denied');
+      }
+    } catch (err) {
+      setError(`Failed to request notification permission: ${err.message}`);
+    }
+  };
+
+  const sendTestNotification = () => {
+    if (!('Notification' in window) || Notification.permission !== 'granted') {
+      requestNotificationPermission();
+      return;
+    }
+
+    try {
+      new Notification('Gold Bitcoin Miner', {
+        body: t('updateMessage'),
+        icon: '/favicon.ico',
+      });
+    } catch (err) {
+      setError(`Failed to send notification: ${err.message}`);
+    }
+  };
+
+  return (
+    <div className="ml-0 md:ml-96 px-4 md:px-6 max-w-full md:max-w-[calc(100%-384px)]">
+      {error && (
+        <div className="bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-100 px-4 py-3 rounded mb-4">
+          {error}
+          <button
+            onClick={() => setError('')}
+            className="ml-2 text-red-700 dark:text-red-100 hover:text-red-900 dark:hover:text-red-300"
+          >
+            <i className="bi bi-x"></i>
+          </button>
+        </div>
+      )}
+
+      {success && (
+        <div className="bg-green-100 dark:bg-green-900 border border-green-400 dark:border-green-700 text-green-700 dark:text-green-100 px-4 py-3 rounded mb-4">
+          {success}
+          <button
+            onClick={() => setSuccess('')}
+            className="ml-2 text-green-700 dark:text-green-100 hover:text-green-900 dark:hover:text-green-300"
+          >
+            <i className="bi bi-x"></i>
+          </button>
+        </div>
+      )}
+
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 crystal-card transition-colors duration-300 animate-slide-in">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 section-title gold-text-gradient">
+          {t('settings')}
+        </h1>
+
+        <div className="space-y-8">
+          <div className="border-b border-gray-200 dark:border-gray-700 pb-6">
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
+              Appearance
+            </h2>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-gray-800 dark:text-white font-medium">{t('darkMode')}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  {t('darkModeDescription')}
+                </p>
+              </div>
+              <div className="toggle-switch bg-gray-300 dark:bg-gray-600">
+                <input
+                  type="checkbox"
+                  id="dark-mode-toggle"
+                  checked={darkMode}
+                  onChange={toggleDarkMode}
+                  className="sr-only"
+                />
+                <label htmlFor="dark-mode-toggle" className="slider"></label>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-b border-gray-200 dark:border-gray-700 pb-6">
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
+              {t('notifications')}
+            </h2>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+              {t('notificationsDescription')}
+            </p>
+
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-gray-800 dark:text-white font-medium">
+                    {t('emailNotifications')}
+                  </p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Receive mining updates and rewards via email
+                  </p>
+                </div>
+                <div className="toggle-switch bg-gray-300 dark:bg-gray-600">
+                  <input
+                    type="checkbox"
+                    id="email-notifications-toggle"
+                    checked={notifications.email}
+                    onChange={() => handleNotificationChange('email')}
+                    className="sr-only"
+                  />
+                  <label htmlFor="email-notifications-toggle" className="slider"></label>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-gray-800 dark:text-white font-medium">
+                    {t('pushNotifications')}
+                  </p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Receive real-time alerts in your browser
+                  </p>
+                </div>
+                <div className="toggle-switch bg-gray-300 dark:bg-gray-600">
+                  <input
+                    type="checkbox"
+                    id="push-notifications-toggle"
+                    checked={notifications.push}
+                    onChange={() => {
+                      if (!notifications.push) {
+                        requestNotificationPermission();
+                      } else {
+                        handleNotificationChange('push');
+                      }
+                    }}
+                    className="sr-only"
+                  />
+                  <label htmlFor="push-notifications-toggle" className="slider"></label>
+                </div>
+              </div>
+
+              <button
+                onClick={sendTestNotification}
+                disabled={isLoading}
+                className="px-4 py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-medium rounded-lg shadow-lg transition-colors duration-300 flex items-center"
+              >
+                <i className="bi bi-bell-fill mr-2"></i>
+                Test Notification
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
+              {t('about')}
+            </h2>
+            <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+              <p className="text-gray-800 dark:text-white font-medium">Gold Bitcoin Miner</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{t('version')}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                A virtual Bitcoin mining simulator that lets you experience the thrill of mining
+                without expensive hardware.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+    // Render the app
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
